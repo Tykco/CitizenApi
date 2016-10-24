@@ -13,7 +13,7 @@ public class CitiZenApiApplication {
     @RequestMapping("/")
     @ResponseBody
     String home() {
-      return "Hello World!";
+      return "Citi Hello World!";
     }
 
     public static void main(String[] args) {
