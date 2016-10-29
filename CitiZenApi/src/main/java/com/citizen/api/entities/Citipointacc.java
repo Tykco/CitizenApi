@@ -14,7 +14,7 @@ public class Citipointacc implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private long id;
 
 	private double balance;
 
@@ -23,11 +23,11 @@ public class Citipointacc implements Serializable {
 	public Citipointacc() {
 	}
 
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
