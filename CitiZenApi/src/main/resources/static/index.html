@@ -1,0 +1,57 @@
+<html ng-app="citizen">
+
+<head>
+    <title>Citizen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+    <!-- css framework dependencies -->
+    <link rel="stylesheet" type="text/css" href="assets/css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/icon.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/unslider.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/unslider-dots.css">
+
+    <!-- css custom dependencies -->
+    <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/cause.css">
+
+    <!-- javascript dependencies -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.6/angular-cookies.min.js"></script>
+    <script src="assets/js/loadash.js"></script>
+    <script src="assets/js/angular-simple-logger.min.js"></script>
+    <script src="assets/js/angular-google-maps.min.js"></script>
+    <script src="assets/js/angular-easyfb.min.js"></script>
+    <script src="assets/js/semantic.js"></script>
+    <script src="assets/js/unslider-min.js"></script>
+
+    <!-- angular dependencies -->
+    <script src="app.js"></script>
+    <script src="modules/home/home.controller.js"></script>
+    <script src="modules/cause/cause.controller.js"></script>
+    <script src="modules/confirmation/confirmation.controller.js"></script>
+    <script src="modules/cookie/cookie.factory.js"></script>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+       
+    <div ng-include src="'modules/header/header.html'"></div>
+    <ui-view></ui-view>
+</body>
+
+</html>
