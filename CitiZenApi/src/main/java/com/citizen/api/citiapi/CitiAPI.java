@@ -381,6 +381,32 @@ public class CitiAPI {
 
 		return result;
 	}
+	
+	public String oAuthorize(){
+		CloseableHttpClient httpClient = null;
+
+		CloseableHttpResponse response = null;
+
+		try {
+			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
+
+			HttpGet request = new HttpGet("https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&client_id=b42c147f-225b-493b-bec0-248cbb11f5c2&scope=pay_with_points&countryCode=SG&businessCode=GCB&locale=en_US&state=SG&redirect_uri=https://citizen-app.herokuapp.com/"); 
+
+			System.out.println("Executing request " + request.getRequestLine());
+
+			response = httpClient.execute(request);
+
+			System.out.println("----------------------------------------");
+			System.out.println(response.getStatusLine());
+			String result = EntityUtils.toString(response.getEntity());
+			System.out.println(result);
+			return result;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}
+	}
 
 }
 
