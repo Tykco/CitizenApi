@@ -1,58 +1,18 @@
 
 package com.citizen.api.entities;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class CreditCardProduct {
 
-    private String sourceCode;
-    private String cardDeliveryAddress;
     private String productCode;
-    private String giftCode;
+    private String sourceCode;
     private String organization;
     private String logo;
-    private String embossName;
-    private Boolean creditLimitIncreaseIndicator;
-    private Boolean requestCreditShield;
-    private String billingAddress;
-    private String pinDeliveryAddress;
-
-    /**
-     * 
-     * @return
-     *     The sourceCode
-     */
-    public String getSourceCode() {
-        return sourceCode;
-    }
-
-    /**
-     * 
-     * @param sourceCode
-     *     The sourceCode
-     */
-    public void setSourceCode(String sourceCode) {
-        this.sourceCode = sourceCode;
-    }
-
-    /**
-     * 
-     * @return
-     *     The cardDeliveryAddress
-     */
-    public String getCardDeliveryAddress() {
-        return cardDeliveryAddress;
-    }
-
-    /**
-     * 
-     * @param cardDeliveryAddress
-     *     The cardDeliveryAddress
-     */
-    public void setCardDeliveryAddress(String cardDeliveryAddress) {
-        this.cardDeliveryAddress = cardDeliveryAddress;
-    }
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -75,19 +35,19 @@ public class CreditCardProduct {
     /**
      * 
      * @return
-     *     The giftCode
+     *     The sourceCode
      */
-    public String getGiftCode() {
-        return giftCode;
+    public String getSourceCode() {
+        return sourceCode;
     }
 
     /**
      * 
-     * @param giftCode
-     *     The giftCode
+     * @param sourceCode
+     *     The sourceCode
      */
-    public void setGiftCode(String giftCode) {
-        this.giftCode = giftCode;
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
     }
 
     /**
@@ -126,94 +86,12 @@ public class CreditCardProduct {
         this.logo = logo;
     }
 
-    /**
-     * 
-     * @return
-     *     The embossName
-     */
-    public String getEmbossName() {
-        return embossName;
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
     }
 
-    /**
-     * 
-     * @param embossName
-     *     The embossName
-     */
-    public void setEmbossName(String embossName) {
-        this.embossName = embossName;
-    }
-
-    /**
-     * 
-     * @return
-     *     The creditLimitIncreaseIndicator
-     */
-    public Boolean getCreditLimitIncreaseIndicator() {
-        return creditLimitIncreaseIndicator;
-    }
-
-    /**
-     * 
-     * @param creditLimitIncreaseIndicator
-     *     The creditLimitIncreaseIndicator
-     */
-    public void setCreditLimitIncreaseIndicator(Boolean creditLimitIncreaseIndicator) {
-        this.creditLimitIncreaseIndicator = creditLimitIncreaseIndicator;
-    }
-
-    /**
-     * 
-     * @return
-     *     The requestCreditShield
-     */
-    public Boolean getRequestCreditShield() {
-        return requestCreditShield;
-    }
-
-    /**
-     * 
-     * @param requestCreditShield
-     *     The requestCreditShield
-     */
-    public void setRequestCreditShield(Boolean requestCreditShield) {
-        this.requestCreditShield = requestCreditShield;
-    }
-
-    /**
-     * 
-     * @return
-     *     The billingAddress
-     */
-    public String getBillingAddress() {
-        return billingAddress;
-    }
-
-    /**
-     * 
-     * @param billingAddress
-     *     The billingAddress
-     */
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
-    /**
-     * 
-     * @return
-     *     The pinDeliveryAddress
-     */
-    public String getPinDeliveryAddress() {
-        return pinDeliveryAddress;
-    }
-
-    /**
-     * 
-     * @param pinDeliveryAddress
-     *     The pinDeliveryAddress
-     */
-    public void setPinDeliveryAddress(String pinDeliveryAddress) {
-        this.pinDeliveryAddress = pinDeliveryAddress;
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

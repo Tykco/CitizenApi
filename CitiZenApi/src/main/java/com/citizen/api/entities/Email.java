@@ -1,14 +1,15 @@
 
 package com.citizen.api.entities;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Email {
 
     private String emailAddress;
-    private Boolean okToEmail;
-    private Boolean isPrerferredEmailAddress;
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -28,40 +29,12 @@ public class Email {
         this.emailAddress = emailAddress;
     }
 
-    /**
-     * 
-     * @return
-     *     The okToEmail
-     */
-    public Boolean getOkToEmail() {
-        return okToEmail;
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
     }
 
-    /**
-     * 
-     * @param okToEmail
-     *     The okToEmail
-     */
-    public void setOkToEmail(Boolean okToEmail) {
-        this.okToEmail = okToEmail;
-    }
-
-    /**
-     * 
-     * @return
-     *     The isPrerferredEmailAddress
-     */
-    public Boolean getIsPrerferredEmailAddress() {
-        return isPrerferredEmailAddress;
-    }
-
-    /**
-     * 
-     * @param isPrerferredEmailAddress
-     *     The isPrerferredEmailAddress
-     */
-    public void setIsPrerferredEmailAddress(Boolean isPrerferredEmailAddress) {
-        this.isPrerferredEmailAddress = isPrerferredEmailAddress;
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

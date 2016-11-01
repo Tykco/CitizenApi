@@ -1,55 +1,34 @@
 
 package com.citizen.api.entities;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Name {
 
-    private String aliasName;
-    private String surname;
-    private String givenName;
-    private String localEnglishGivenName;
-    private String localEnglishSurname;
-    private String middleName;
-    private String saluteBy;
     private String salutation;
-    private String suffix;
+    private String givenName;
+    private String surname;
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
      * @return
-     *     The aliasName
+     *     The salutation
      */
-    public String getAliasName() {
-        return aliasName;
+    public String getSalutation() {
+        return salutation;
     }
 
     /**
      * 
-     * @param aliasName
-     *     The aliasName
+     * @param salutation
+     *     The salutation
      */
-    public void setAliasName(String aliasName) {
-        this.aliasName = aliasName;
-    }
-
-    /**
-     * 
-     * @return
-     *     The surname
-     */
-    public String getSurname() {
-        return surname;
-    }
-
-    /**
-     * 
-     * @param surname
-     *     The surname
-     */
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
     }
 
     /**
@@ -73,109 +52,27 @@ public class Name {
     /**
      * 
      * @return
-     *     The localEnglishGivenName
+     *     The surname
      */
-    public String getLocalEnglishGivenName() {
-        return localEnglishGivenName;
+    public String getSurname() {
+        return surname;
     }
 
     /**
      * 
-     * @param localEnglishGivenName
-     *     The localEnglishGivenName
+     * @param surname
+     *     The surname
      */
-    public void setLocalEnglishGivenName(String localEnglishGivenName) {
-        this.localEnglishGivenName = localEnglishGivenName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    /**
-     * 
-     * @return
-     *     The localEnglishSurname
-     */
-    public String getLocalEnglishSurname() {
-        return localEnglishSurname;
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
     }
 
-    /**
-     * 
-     * @param localEnglishSurname
-     *     The localEnglishSurname
-     */
-    public void setLocalEnglishSurname(String localEnglishSurname) {
-        this.localEnglishSurname = localEnglishSurname;
-    }
-
-    /**
-     * 
-     * @return
-     *     The middleName
-     */
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    /**
-     * 
-     * @param middleName
-     *     The middleName
-     */
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    /**
-     * 
-     * @return
-     *     The saluteBy
-     */
-    public String getSaluteBy() {
-        return saluteBy;
-    }
-
-    /**
-     * 
-     * @param saluteBy
-     *     The saluteBy
-     */
-    public void setSaluteBy(String saluteBy) {
-        this.saluteBy = saluteBy;
-    }
-
-    /**
-     * 
-     * @return
-     *     The salutation
-     */
-    public String getSalutation() {
-        return salutation;
-    }
-
-    /**
-     * 
-     * @param salutation
-     *     The salutation
-     */
-    public void setSalutation(String salutation) {
-        this.salutation = salutation;
-    }
-
-    /**
-     * 
-     * @return
-     *     The suffix
-     */
-    public String getSuffix() {
-        return suffix;
-    }
-
-    /**
-     * 
-     * @param suffix
-     *     The suffix
-     */
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

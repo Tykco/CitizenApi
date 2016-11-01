@@ -1,18 +1,17 @@
 
 package com.citizen.api.entities;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Phone {
 
     private String phoneType;
-    private String areaCode;
-    private String extension;
-    private String phoneNumber;
     private String phoneCountryCode;
-    private Boolean okToCall;
-    private Boolean okToSms;
+    private String phoneNumber;
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -30,60 +29,6 @@ public class Phone {
      */
     public void setPhoneType(String phoneType) {
         this.phoneType = phoneType;
-    }
-
-    /**
-     * 
-     * @return
-     *     The areaCode
-     */
-    public String getAreaCode() {
-        return areaCode;
-    }
-
-    /**
-     * 
-     * @param areaCode
-     *     The areaCode
-     */
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
-    }
-
-    /**
-     * 
-     * @return
-     *     The extension
-     */
-    public String getExtension() {
-        return extension;
-    }
-
-    /**
-     * 
-     * @param extension
-     *     The extension
-     */
-    public void setExtension(String extension) {
-        this.extension = extension;
-    }
-
-    /**
-     * 
-     * @return
-     *     The phoneNumber
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * 
-     * @param phoneNumber
-     *     The phoneNumber
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     /**
@@ -107,37 +52,27 @@ public class Phone {
     /**
      * 
      * @return
-     *     The okToCall
+     *     The phoneNumber
      */
-    public Boolean getOkToCall() {
-        return okToCall;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     /**
      * 
-     * @param okToCall
-     *     The okToCall
+     * @param phoneNumber
+     *     The phoneNumber
      */
-    public void setOkToCall(Boolean okToCall) {
-        this.okToCall = okToCall;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    /**
-     * 
-     * @return
-     *     The okToSms
-     */
-    public Boolean getOkToSms() {
-        return okToSms;
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
     }
 
-    /**
-     * 
-     * @param okToSms
-     *     The okToSms
-     */
-    public void setOkToSms(Boolean okToSms) {
-        this.okToSms = okToSms;
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

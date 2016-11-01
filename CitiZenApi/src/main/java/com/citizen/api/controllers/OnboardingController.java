@@ -67,10 +67,10 @@ public class OnboardingController {
 		List<ConsentDetail> consentDetails = new ArrayList<ConsentDetail>();
 		ConsentDetail consentDetailObj1 = new ConsentDetail();
 		consentDetailObj1.setConsentType("PDP_CONSENT");
-		consentDetailObj1.setIsConsentGiven(true);
+		consentDetailObj1.setIsConsentGiven("true");
 		ConsentDetail consentDetailObj2 = new ConsentDetail();
 		consentDetailObj2.setConsentType("PARTNER_CONSENT");
-		consentDetailObj2.setIsConsentGiven(true);
+		consentDetailObj2.setIsConsentGiven("true");
 		consentDetails.add(consentDetailObj1);
 		consentDetails.add(consentDetailObj2);
 		
@@ -157,10 +157,10 @@ public class OnboardingController {
 		List<ConsentDetail> consentDetails = new ArrayList<ConsentDetail>();
 		ConsentDetail consentDetailObj1 = new ConsentDetail();
 		consentDetailObj1.setConsentType("PDP_CONSENT");
-		consentDetailObj1.setIsConsentGiven(true);
+		consentDetailObj1.setIsConsentGiven("true");
 		ConsentDetail consentDetailObj2 = new ConsentDetail();
 		consentDetailObj2.setConsentType("PARTNER_CONSENT");
-		consentDetailObj2.setIsConsentGiven(true);
+		consentDetailObj2.setIsConsentGiven("true");
 		consentDetails.add(consentDetailObj1);
 		consentDetails.add(consentDetailObj2);
 		

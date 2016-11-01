@@ -1,50 +1,15 @@
 
 package com.citizen.api.entities;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Product {
 
-    private ReadyCreditProduct readyCreditProduct;
-    private UnsecuredLoanProduct unsecuredLoanProduct;
     private CreditCardProduct creditCardProduct;
-
-    /**
-     * 
-     * @return
-     *     The readyCreditProduct
-     */
-    public ReadyCreditProduct getReadyCreditProduct() {
-        return readyCreditProduct;
-    }
-
-    /**
-     * 
-     * @param readyCreditProduct
-     *     The readyCreditProduct
-     */
-    public void setReadyCreditProduct(ReadyCreditProduct readyCreditProduct) {
-        this.readyCreditProduct = readyCreditProduct;
-    }
-
-    /**
-     * 
-     * @return
-     *     The unsecuredLoanProduct
-     */
-    public UnsecuredLoanProduct getUnsecuredLoanProduct() {
-        return unsecuredLoanProduct;
-    }
-
-    /**
-     * 
-     * @param unsecuredLoanProduct
-     *     The unsecuredLoanProduct
-     */
-    public void setUnsecuredLoanProduct(UnsecuredLoanProduct unsecuredLoanProduct) {
-        this.unsecuredLoanProduct = unsecuredLoanProduct;
-    }
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -62,6 +27,14 @@ public class Product {
      */
     public void setCreditCardProduct(CreditCardProduct creditCardProduct) {
         this.creditCardProduct = creditCardProduct;
+    }
+
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }
