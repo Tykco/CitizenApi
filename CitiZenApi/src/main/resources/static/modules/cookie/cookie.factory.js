@@ -8,6 +8,7 @@ angular.module('citizen')
 
         var page = "";
         var username = "";
+        var accessToken = "";
 
         return {
 
@@ -39,6 +40,21 @@ angular.module('citizen')
             clearUserCookieData: function () {
                 username = "";
                 $cookies.remove("username");
+            },
+            
+            setAccessTokenCookieData: function (accessToken) {
+                accessToken = accessToken;
+                $cookies.put("accessToken", accessToken);
+            },
+
+            getAccessTokenCookieData: function () {
+                accessToken = $cookies.get("accessToken");
+                return accessToken;
+            },
+
+            clearAccessTokenCookieData: function () {
+                accessToken = "";
+                $cookies.remove("accessToken");
             }
 
         }

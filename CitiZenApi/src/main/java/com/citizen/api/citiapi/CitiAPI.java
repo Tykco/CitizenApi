@@ -465,7 +465,6 @@ public class CitiAPI {
 	//Onboarding
 	//Product Catalogue
 	public Catalogue getProductCatalogue(){
-	//public String getProductCatalogue(){
 		
 		ObjectMapper mapper = new ObjectMapper();
 		CloseableHttpClient httpClient = null;
@@ -498,6 +497,11 @@ public class CitiAPI {
 			e.printStackTrace();
 		}
 		return catalogue;
+	}
+	
+	public String postOnboarding() {
+		
+		return "error";
 	}
 
 	//===============Helper Functions===========================================

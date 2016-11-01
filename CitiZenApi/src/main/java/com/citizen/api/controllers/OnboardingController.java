@@ -126,12 +126,12 @@ public class OnboardingController {
 	}
 
 	@RequestMapping(value = "/onboardcard", method = RequestMethod.POST)
-	public Onboarding onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
+	public OnboardingRequest onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
 
-		String productCode = "VC830";
-		String sourceCode = "WW5ARCE1";
-		String organization = "888";
-		String logo = "830";
+		String productCode = productObject.getProductCode();
+		String sourceCode = productObject.getSourceCode();
+		String organization = productObject.getOrganisation();
+		String logo = productObject.getLogo();
 		String salutation = "MR";
 		String givenName = "Leon";
 		String surname = "Lim";
@@ -140,7 +140,7 @@ public class OnboardingController {
 		String phoneCountryCode = "65";
 		String phoneNumber = "98778535";
 
-		Onboarding onboardingRequest = new Onboarding();
+		OnboardingRequest onboardingRequest = new OnboardingRequest();
 		
 		Product product = new Product();
 		CreditCardProduct creditCardProduct = new CreditCardProduct();
