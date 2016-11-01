@@ -37,6 +37,12 @@ var app = angular.module('citizen', [
         url: '/confirmation',
         controller: 'ConfirmationCtrl',
         templateUrl: 'modules/confirmation/confirmation.html'
+    })
+    
+    .state('reward', {
+        url: '/reward',
+        controller: 'ConfirmationCtrl',
+        templateUrl: 'modules/reward/reward.html'
     });
 
     $urlRouterProvider.otherwise('/');

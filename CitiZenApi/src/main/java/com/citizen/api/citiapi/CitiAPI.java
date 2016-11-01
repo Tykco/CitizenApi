@@ -1,9 +1,5 @@
 package com.citizen.api.citiapi;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,29 +7,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import org.apache.http.entity.StringEntity;
+
+import com.citizen.api.entities.Catalogue;
+import com.citizen.api.entities.ProductCat;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CitiAPI {
 
 	private String tokenType = null;
 	private String accessToken = null;
 	private String rewardLinkCode = null;
+	private String customerName = null;
 	private int availablePointBalance = 0;
 	private double programConversionRate = 0;
 	private String currencyCode = null;
@@ -42,6 +40,7 @@ public class CitiAPI {
 
 	private final String appAuthorization = "Basic YjQyYzE0N2YtMjI1Yi00OTNiLWJlYzAtMjQ4Y2JiMTFmNWMyOk40Zkc4ckQ2b0o4aEIxZUYyblcxcUwybEI0bVUzcFY2eFMxdlYwcUo3eU01ZEswd0o1";
 	private final String appClientId = "b42c147f-225b-493b-bec0-248cbb11f5c2";
+	private final String appUrl = "https://citizen-app.herokuapp.com/";
 
 	public CitiAPI(){}
 
@@ -327,7 +326,7 @@ public class CitiAPI {
 
 			params.put("redemptionOrder", generateRequestBody(innerParams));
 			params.put("transactionReferenceNumber", transactionReferenceNumber);
-			
+
 			StringEntity requestBody =new StringEntity(generateRequestBody(params));
 
 			try {
@@ -346,7 +345,7 @@ public class CitiAPI {
 			System.out.println(response.getStatusLine());
 			String result = EntityUtils.toString(response.getEntity());
 			System.out.println(result);
-			
+
 			response.close();
 			return result;
 		}
@@ -356,6 +355,150 @@ public class CitiAPI {
 		}
 	}
 
+
+	//Customer starts here
+	public String getAccessTokenWithCode(String code) {
+		CloseableHttpClient httpClient = null;
+
+		CloseableHttpResponse response = null;
+
+
+		try {
+			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
+			//proxy configuration 
+			//HttpHost proxy = new HttpHost("proxy.xxxx.com", 8080, "http");
+			//RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+
+			HttpPost request = new HttpPost("https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/token/sg/gcb");
+
+			//proxy configuration
+			//request.setConfig(config);
+			// Header parameters  addition
+			request.addHeader("Authorization", appAuthorization);
+			request.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+			List < NameValuePair > params = new ArrayList < NameValuePair >();
+
+
+			// form parameters
+			params.add(new BasicNameValuePair("grant_type", "authorization_code"));
+			// form parameters
+			params.add(new BasicNameValuePair("code", code));
+			// form parameters
+			params.add(new BasicNameValuePair("redirect_uri", appUrl));
+
+
+			try {
+				((HttpPost) request).setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+			} catch (Exception e) {
+				e.printStackTrace(); 
+			}
+
+			System.out.println("Executing request " + request.getRequestLine());
+
+			response = httpClient.execute(request);
+
+			System.out.println("----------------------------------------");
+			System.out.println(response.getStatusLine());
+			String result = EntityUtils.toString(response.getEntity());
+			System.out.println(result);
+			JSONObject resultObject = new JSONObject(result);
+			System.out.println(resultObject);
+			this.tokenType = resultObject.getString("token_type");
+			this.tokenType = this.tokenType.substring(0, 1).toUpperCase() + this.tokenType.substring(1); 
+			this.accessToken = resultObject.getString("access_token");
+
+			response.close();
+			return result;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}
+	}
+
+	public String getCustomerName(){
+		CloseableHttpClient httpClient = null;
+
+		CloseableHttpResponse response = null;
+
+
+		try {
+			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
+			//proxy configuration 
+			//HttpHost proxy = new HttpHost("proxy.xxxx.com", 8080, "http");
+			//RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+
+			HttpGet request = new HttpGet("https://sandbox.apihub.citi.com/gcb/api/v1/customers/profiles/basic"); 
+
+			//proxy configuration
+			//request.setConfig(config);
+			// Header parameters  addition
+			request.addHeader("Authorization", this.tokenType + " " + this.accessToken);
+			request.addHeader("uuid", generateUUID());
+			request.addHeader("Accept", "application/json");
+			request.addHeader("client_id", appClientId);
+
+			System.out.println("Executing request " + request.getRequestLine());
+
+			response = httpClient.execute(request);
+
+			System.out.println("----------------------------------------");
+			System.out.println(response.getStatusLine());
+			String result = EntityUtils.toString(response.getEntity());
+			JSONObject resultObject = new JSONObject(result);
+			System.out.println(resultObject);
+			this.customerName = ((JSONObject)resultObject.getJSONObject("customerParticulars").getJSONArray("names").get(0)).getString("fullName");
+			System.out.println(result);
+
+			response.close();
+			return this.customerName;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	//Customer ends here
+	
+	//Onboarding
+	//Product Catalogue
+	public Catalogue getProductCatalogue(){
+	//public String getProductCatalogue(){
+		
+		ObjectMapper mapper = new ObjectMapper();
+		CloseableHttpClient httpClient = null;
+
+		CloseableHttpResponse response = null;
+		
+		Catalogue catalogue = new Catalogue();
+
+		try {
+			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
+
+			HttpGet request = new HttpGet("https://sandbox.apihub.citi.com/gcb/api/v1/apac/onboarding/products");
+			
+			request.addHeader("Authorization", this.tokenType + " " + this.accessToken);
+			request.addHeader("uuid", generateUUID());
+			request.addHeader("Accept", "application/json");
+			request.addHeader("client_id", appClientId);
+			
+			System.out.println("Executing request " + request.getRequestLine());
+
+			response = httpClient.execute(request);
+
+			System.out.println("----------------------------------------");
+			System.out.println(response.getStatusLine());
+			String result = EntityUtils.toString(response.getEntity());
+			catalogue = mapper.readValue(result, new TypeReference<Catalogue>(){});
+			System.out.println(result);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return catalogue;
+	}
 
 	//===============Helper Functions===========================================
 	private String generateUUID(){
@@ -380,32 +523,6 @@ public class CitiAPI {
 		result = result.substring(0,result.length() - 1) + "}";
 
 		return result;
-	}
-	
-	public String oAuthorize(){
-		CloseableHttpClient httpClient = null;
-
-		CloseableHttpResponse response = null;
-
-		try {
-			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
-
-			HttpGet request = new HttpGet("https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&client_id=b42c147f-225b-493b-bec0-248cbb11f5c2&scope=pay_with_points&countryCode=SG&businessCode=GCB&locale=en_US&state=SG&redirect_uri=https://citizen-app.herokuapp.com/"); 
-
-			System.out.println("Executing request " + request.getRequestLine());
-
-			response = httpClient.execute(request);
-
-			System.out.println("----------------------------------------");
-			System.out.println(response.getStatusLine());
-			String result = EntityUtils.toString(response.getEntity());
-			System.out.println(result);
-			return result;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return "error";
-		}
 	}
 
 }

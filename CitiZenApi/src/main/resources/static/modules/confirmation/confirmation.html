@@ -11,21 +11,21 @@
                         <div class="row">
                             <div class="ui card" style="width:100%">
                                 <div class="image">
-                                    <img src="/assets/img/african_elephant.jpg">
+                                    <img ng-src="{{causeList[getCurrentPage()].image}}">
                                 </div>
                                 <div class="content">
-                                    <a class="cause-name inactive-link">Save the Elephants</a>
+                                    <a class="cause-name inactive-link">{{causeList[getCurrentPage()].name}}</a>
                                     <div class="description">
                                         <span class="right floated">
 												<i class="heart like icon"></i>
-												17 likes
-											</span> 201 donors
+												{{causeList[getCurrentPage()].numberOfLikes}} likes
+											</span> {{causeList[getCurrentPage()].numberOfDonors}} Citizen Donors
                                     </div>
                                 </div>
                                 <div class="extra content">
                                     <span>
-                                        <img class="ui avatar image" src="/assets/img/animal_planet.png">
-                                        Animal Planet
+                                        <img class="ui avatar image" src="{{causeList[getCurrentPage()].avatar}}">
+                                        {{causeList[getCurrentPage()].org}}
                                     </span>
                                 </div>
                             </div>

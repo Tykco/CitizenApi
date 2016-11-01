@@ -7,6 +7,7 @@ angular.module('citizen')
     .factory('cookieFactory', function ($cookies) {
 
         var page = "";
+        var username = "";
 
         return {
 
@@ -23,6 +24,21 @@ angular.module('citizen')
             clearCookieData: function () {
                 page = "";
                 $cookies.remove("page");
+            },
+            
+            setUserCookieData: function (username) {
+                username = username;
+                $cookies.put("username", username);
+            },
+
+            getUserCookieData: function () {
+                username = $cookies.get("username");
+                return username;
+            },
+
+            clearUserCookieData: function () {
+                username = "";
+                $cookies.remove("username");
             }
 
         }

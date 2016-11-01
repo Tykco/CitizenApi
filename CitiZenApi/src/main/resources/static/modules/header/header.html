@@ -1,27 +1,29 @@
 <!-- navbar -->
-<div class="ui stackable menu fixed navbar">
+<div ng-controller="HomeCtrl" class="ui stackable menu fixed navbar">
     <a class="header item" ui-sref="home">
         <!-- <img src="css/images/logo.svg" class="m-r-10"> -->
         <span>CITI </span> ZEN
     </a>
     <div class="right menu">
-        <a ui-sref="upload" class="ui item">
+        <a ui-sref="reward" class="ui item">
 				Rewards Journey
-			</a>
-        <a href="#" class="ui item">
+        </a>
+        <a href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&client_id=b42c147f-225b-493b-bec0-248cbb11f5c2&scope=pay_with_points%20customers_profiles&countryCode=SG&businessCode=GCB&locale=en_US&state=SG&redirect_uri=https://citizen-app.herokuapp.com/" class="ui item">
             <i class="mail outline icon m-l-5"></i>
         </a>
         <a href="#" class="ui dropdown item">
-				Leon
-				<img class="ui avatar image m-l-10" src="/assets/img/user_icon.png">
-				<div class="menu profile-dropdown">
-					<div class="item">Activity</div>
-					<div class="item">Profile</div>
-					<div class="item">Settings</div>
-					<div class="item">Feedback</div>
-					<div class="item">Log Out</div>
-				</div>
-			</a>
+            <div ng-if="isUserLogin()">Level 1&nbsp; : &nbsp; Leon </div>
+            <img ng-if="isUserLogin()" class="ui avatar image m-l-10" src="/assets/img/user_icon.png">
+            <div ng-if="!isUserLogin()">Login Here</div>
+            <img ng-if="!isUserLogin()" class="ui avatar image m-l-10" src="/assets/img/empty_icon.png">
+            <div class="menu profile-dropdown">
+                <div class="item">Activity</div>
+                <div class="item">Profile</div>
+                <div class="item">Settings</div>
+                <div class="item">Feedback</div>
+                <div class="item">Log Out</div>
+            </div>
+        </a>
     </div>
 </div>
 <!-- END navbar -->

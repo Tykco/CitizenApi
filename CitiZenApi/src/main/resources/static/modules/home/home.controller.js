@@ -30,6 +30,7 @@ angular.module('citizen')
         {
             name: "Save the Elephants",
             org: "Animal Planet",
+            numberOfDonors: 102,
             numberOfLikes: 204,
             image: "/assets/img/african_elephant.jpg",
             citiPoints: 50,
@@ -38,6 +39,7 @@ angular.module('citizen')
         {
             name: "Adopt an African Child",
             org: "Unicef",
+            numberOfDonors: 259,
             numberOfLikes: 108,
             image: "/assets/img/african_children.jpg",
             citiPoints: 100,
@@ -46,6 +48,7 @@ angular.module('citizen')
         {
             name: "Fight Elderly Depression",
             org: "Touch Community",
+            numberOfDonors: 301,
             numberOfLikes: 82,
             image: "/assets/img/elderly_care.jpg",
             citiPoints: 85,
@@ -54,6 +57,7 @@ angular.module('citizen')
         {
             name: "Raise Ebola Awareness",
             org: "World Health Organization",
+            numberOfDonors: 87,
             numberOfLikes: 58,
             image: "/assets/img/stop_ebola.jpg",
             citiPoints: 69,
@@ -62,6 +66,7 @@ angular.module('citizen')
         {
             name: "Plant a Tree Project",
             org: "World Wide Fund for Nature",
+            numberOfDonors: 51,
             numberOfLikes: 71,
             image: "/assets/img/plant_a_tree.jpg",
             citiPoints: 25,
@@ -72,6 +77,29 @@ angular.module('citizen')
     $scope.setPageCookie = function(pageNumber) {
         cookieFactory.setCookieData(pageNumber);
         $state.go('cause');
-    }
+    };
+    
+    $scope.isUserLogin = function() {
+        
+        if(cookieFactory.getUserCookieData() == undefined) {
+            return true;
+        } else {
+            return false;   
+        } 
+    };
+    
+    $scope.getAccessToken = function () {
+        
+        var url = document.URL;
+        var access_token = "";
+
+        if(url.indexOf("code") !== -1){
+            access_token = url.substring(url.indexOf("code")+5, url.indexOf("&state"));
+            alert(access_token);
+        }
+    };
+    
+    $scope.getAccessToken();
+    
 
 });

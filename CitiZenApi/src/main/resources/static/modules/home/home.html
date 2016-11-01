@@ -277,59 +277,46 @@
             <div class="four wide column">
                 <div class="ui vertical text menu fluid">
                     <div class="header item">BROWSE BY CATEGORIES</div>
-                    <a class="item active">
+                    <a class="item active categorypopup">
                        Most Recent
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Most Popular
                     </a>
                     <div class="ui divider"></div>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Animals
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Children & Youth
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Conservation
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Disabled
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Education & Literacy
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Health & Wellness
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Homeless
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Humanitarian
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Seniors
                     </a>
-                    <a class="item">
+                    <a class="item categorypopup">
                        Women
                     </a>
                 </div>
             </div>
             <!-- END vertical menu -->
-
-            <!--<div class="ui card">
-                <div class="blurring dimmable image">
-                    <div class="ui inverted dimmer">
-                        <div class="content">
-                            <div class="center">
-                                <div class="ui red button view">VIEW</div>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="/assets/img/plant_a_tree.jpg">
-                </div>
-            </div>-->
 
             <div class="twelve wide column">
                 <!-- card stack -->
@@ -352,7 +339,7 @@
                                 <span class="right floated">       
                                 <i class="m-l-5 heart like icon"></i>
                                     {{causeList[0].numberOfLikes}} likes
-                                </span> 121 Citizen Donors
+                                </span> {{causeList[0].numberOfDonors}} Citizen Donors
                             </div>
                         </div>
                         <div class="extra content">
@@ -383,9 +370,9 @@
                             <a class="cause-name" ng-click="setPageCookie('1')">{{causeList[1].name}}</a>
                             <div class="description">
                                 <span class="right floated">
-                                        {{causeList[1].numberOfLikes}}
                                 <i class="m-l-5 heart like icon"></i>
-                                </span> Require {{causeList[1].citiPoints}} Citi Points
+                                    {{causeList[1].numberOfLikes}} likes
+                                </span> {{causeList[1].numberOfDonors}} Citizen Donors
                             </div>
                         </div>
                         <div class="extra content">
@@ -406,19 +393,19 @@
                             <div class="ui dimmer">
                                 <div class="content">
                                     <div class="center">
-                                        <div class="ui button" ng-click="setPageCookie('page3')">Find out more!</div>
+                                        <div class="ui button" ng-click="setPageCookie('2')">Find out more!</div>
                                     </div>
                                 </div>
                             </div>
                             <img ng-src="{{causeList[2].image}}">
                         </a>
                         <div class="content">
-                            <a class="cause-name" ng-click="setPageCookie('page3')">{{causeList[2].name}}</a>
+                            <a class="cause-name" ng-click="setPageCookie('2')">{{causeList[2].name}}</a>
                             <div class="description">
                                 <span class="right floated">
-                                        {{causeList[2].numberOfLikes}}
                                 <i class="m-l-5 heart like icon"></i>
-                                </span> Require {{causeList[2].citiPoints}} Citi Points
+                                    {{causeList[2].numberOfLikes}} likes
+                                </span> {{causeList[2].numberOfDonors}} Citizen Donors
                             </div>
                         </div>
                         <div class="extra content">
@@ -439,19 +426,19 @@
                             <div class="ui dimmer">
                                 <div class="content">
                                     <div class="center">
-                                        <div class="ui button" ng-click="setPageCookie('page4')">Find out more!</div>
+                                        <div class="ui button" ng-click="setPageCookie('3')">Find out more!</div>
                                     </div>
                                 </div>
                             </div>
                             <img ng-src="{{causeList[3].image}}">
                         </a>
                         <div class="content">
-                            <a class="cause-name" ng-click="setPageCookie('page4')">{{causeList[3].name}}</a>
+                            <a class="cause-name" ng-click="setPageCookie('3')">{{causeList[3].name}}</a>
                             <div class="description">
                                 <span class="right floated">
-                                        {{causeList[3].numberOfLikes}}
                                 <i class="m-l-5 heart like icon"></i>
-                                </span> Require {{causeList[3].citiPoints}} Citi Points
+                                    {{causeList[3].numberOfLikes}} likes
+                                </span> {{causeList[3].numberOfDonors}} Citizen Donors
                             </div>
                         </div>
                         <div class="extra content">
@@ -472,19 +459,19 @@
                             <div class="ui dimmer">
                                 <div class="content">
                                     <div class="center">
-                                        <div class="ui button" ng-click="setPageCookie('page5')">Find out more!</div>
+                                        <div class="ui button" ng-click="setPageCookie('4')">Find out more!</div>
                                     </div>
                                 </div>
                             </div>
                             <img ng-src="{{causeList[4].image}}">
                         </a>
                         <div class="content">
-                            <a class="cause-name" ng-click="setPageCookie('page5')">{{causeList[4].name}}</a>
+                            <a class="cause-name" ng-click="setPageCookie('4')">{{causeList[4].name}}</a>
                             <div class="description">
                                 <span class="right floated">
-                                        {{causeList[4].numberOfLikes}}
                                 <i class="m-l-5 heart like icon"></i>
-                                </span> Require {{causeList[4].citiPoints}} Citi Points
+                                    {{causeList[4].numberOfLikes}} likes
+                                </span> {{causeList[4].numberOfDonors}} Citizen Donors
                             </div>
                         </div>
                         <div class="extra content">
@@ -521,9 +508,14 @@
         position: 'right center'
     });
 
-    $('.medium.image')
-        .dimmer({
-            on: 'hover',
-            opacity: '0.5'
-        });
+    $('.medium.image').dimmer({
+        on: 'hover',
+        opacity: '0.5'
+    });
+    
+    $('.categorypopup').popup({
+        title: 'We are sorry!',
+        content: 'This feature has not been implemented',
+        position: 'top left'
+    });
 </script>

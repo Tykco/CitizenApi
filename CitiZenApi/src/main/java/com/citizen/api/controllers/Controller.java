@@ -11,24 +11,18 @@ import com.citizen.api.entities.Citipointacc;
 import com.citizen.api.services.CitiPointsService;
 
 @RestController
-public class PointsController {
+public class Controller {
 	
 	@Autowired
 	CitiPointsService citiPointsServiceImpl; 
 
 	@RequestMapping(value = "/Citipoints", method = RequestMethod.GET)
-	public Citipointacc CitipointaccById (@RequestParam("id") int customerId) {
+	public Citipointacc getCitipointaccById (@RequestParam("id") int customerId) {
 		
 		Citipointacc citipoints = citiPointsServiceImpl.getCitipointacc(customerId);
 		
 		return citipoints;
 	}
 	
-	@RequestMapping(value = "/oauth", method = RequestMethod.GET)
-	public String getOAuth() {
-		
-		CitiAPI api = new CitiAPI();
-		
-		return api.oAuthorize();
-	}
+	
 }

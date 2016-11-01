@@ -10,27 +10,26 @@
                         <div class="four wide column">
                             <div class="ui card">
                                 <div class="image">
-                                    <img ng-src="{{causeList[0].image}}">
+                                    <img ng-src="{{causeList[getCurrentPage()].image}}">
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="twelve wide column">
                             <div class="content">
                                 <div class="description m-t-15">
-                                    <a class="cause-name inactive-link" ui-sref="cause">Save the Elephants</a>
+                                    <a class="cause-name inactive-link" ui-sref="cause">{{causeList[getCurrentPage()].name}}</a>
                                 </div>
-                                <div class="description m-t-10">
+                                <div class="description m-t-10 m-r-20">
                                     <span class="right floated">
-                                        204
-                                        <i class="m-l-5 m-r-20 heart like icon"></i>
-                                    </span> Require 50 Citi Points
+                                        <i class="m-l-5 heart like icon"></i>
+                                        {{causeList[getCurrentPage()].numberOfLikes}} likes
+                                    </span> {{causeList[getCurrentPage()].numberOfDonors}} Citizen Donors
                                 </div>
                             </div>
-                            
+
                             <div class="extra content m-t-10">
-                                    <img class="ui avatar image" ng-src="/assets/img/animal_planet.png">
-                                        Animal Planet
+                                <img class="ui avatar image" ng-src="{{causeList[getCurrentPage()].avatar}}"> {{causeList[getCurrentPage()].org}}
                                 </span>
                             </div>
                             <div class="m-t-10">
@@ -38,12 +37,12 @@
                                     <!--<a><img class="test m-r-20" src="/assets/img/share_on_facebook.png" height="26px" width="100px"></a>-->
                                     <div class="fb-like m-r-20" data-href="https://developers.facebook.com/docs/plugins/" data-width="100" data-layout="button_count" data-action="recommend" data-size="small" data-show-faces="true" data-share="true"></div>
                                 </span>
-                                <a class="ui tag label inactive-link" style="background-color:lightblue">Animals</a>
-                                <a class="ui tag label inactive-link" style="background-color:orange">Conservation</a>
+
+                                <a ng-repeat="category in causeList[getCurrentPage()].categories" class="ui tag label inactive-link" style="background-color:{{category.color}}">{{category.name}}</a>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="sixteen wide column">
                         <div class="ui secondary pointing menu m-l-5">
                             <a class="active item" ng-click="secMenu('about', $event)"> About
@@ -55,13 +54,15 @@
                         </div>
                         <!-- About -->
                         <div class="ui basic segment about-container m-l-5">
-                            <p>Saving the elephants is an international project started in 2009 by 2 American Vets. Since then, they have saved more than hundreds of elephants from being hunt and killed by those who seek their husks. Thank you for the support!</i></p>
+                            <p>Saving the elephants is an international project started in 2009 by 2 American Vets. Since then, they have saved more than hundreds of elephants from being hunt and killed by those who seek their husks. Thank you for the support!</i>
+                            </p>
                         </div>
                         <!-- END About -->
                         <!-- The Oraganization -->
-                        <div class="ui basic segment organization-container hide m-l-5">         
+                        <div class="ui basic segment organization-container hide m-l-5">
                             <p>Animal Planet is a non-profit organization that aims to conserve the habitat of all endangered animals. It is funded by a group of humanitarian societies and a strong group of volunteers.</p>
-                            <i class="world icon"></i> <a>www.animalplanet.com</a><br/>
+                            <i class="world icon"></i> <a>www.animalplanet.com</a>
+                            <br/>
                             <i class="mail outline icon"></i> <a>animal.planet@am.us</a>
                         </div>
                         <!-- END The Organization -->
@@ -72,7 +73,7 @@
                         <!-- END Points Conversion -->
                     </div>
                 </div>
-                
+
                 <div class="ui grid">
                     <div class="sixteen wide column">
                         <div class="ui fluid card">
@@ -88,7 +89,7 @@
                                                 <img class="upcoming-image" ng-src="/assets/img/banner1.png">
                                             </div>
                                         </div>-->
-                                        
+
                                         <div>
                                             <i class="announcement icon m-l-5 m-r-20 m-b-15"></i>Elephant Charity Run Event
                                         </div>
@@ -101,27 +102,27 @@
                                         <div>
                                             <i class="marker icon m-l-5 m-r-20 m-b-15"></i>Capsicum Island</i>
                                         </div>
-                                        
+
                                         <div class="map-placeholder m-l-5 m-b-20">
                                             <ui-gmap-google-map center="map.center" zoom="map.zoom">
                                                 <ui-gmap-marker coords="marker.coords" idkey="marker.id">
                                                 </ui-gmap-marker>
                                             </ui-gmap-google-map>
                                         </div>
-                                    
+
                                         <div class="content m-l-5 m-r-5 m-b-20">
-                                            Come join us to participate in this awesome charity event to help raise fund for the elephants. It will be a 15km run and for each km, $1 will be donated to the cause to help the elephants. So what are you waiting for? Join us in making a difference to these elephants! 
+                                            Come join us to participate in this awesome charity event to help raise fund for the elephants. It will be a 15km run and for each km, $1 will be donated to the cause to help the elephants. So what are you waiting for? Join us in making a difference to these elephants!
                                         </div>
                                     </div>
-                                </div>                 
+                                </div>
                             </div>
-                            
+
                             <div class="content m-b-5">
                                 <a class="ui teal fluid button signup" ui-sref="something">
                                     <i class="sign in icon m-r-5"></i> Sign up
                                 </a>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -151,7 +152,7 @@
                             <span class="m-l-5">Points Donated</span>
                         </div>-->
                         <div class="extra content m-b-5">
-                            <a class="ui teal fluid button" ui-sref="something">
+                            <a class="ui teal fluid button" ui-sref="confirmation">
                                 <i class="gift icon m-r-5"></i> Donate
                             </a>
                         </div>
@@ -175,15 +176,15 @@
                             </div>
                         </div>
                         <div class="extra content m-b-5">
-                            <a class="ui teal fluid button" ui-sref="something">
+                            <a class="ui teal fluid button" ui-sref="confirmation">
                                 <i class="checkmark icon m-r-5"></i> Pledge
                             </a>
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- END card -->
-                
+
                 <div class="ui fluid card">
                     <div class="content">
                         <div class="description">
@@ -210,14 +211,14 @@
         content: 'This feature has not been implemented',
         position: 'right center'
     });
-    
+
     $('.donatepoints').popup({
         title: 'What is Donate Points?',
         content: 'Donate your exisiting Citipoints to the cause of your choice',
         position: 'left center',
         variation: 'inverted'
     });
-    
+
     $('.pledgepoints').popup({
         title: 'What is Pledge Points?',
         content: 'For every transaction, the pledge percentage of Citipoints will be donated to the cause of your choice',
