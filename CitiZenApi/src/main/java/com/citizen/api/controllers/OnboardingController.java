@@ -18,6 +18,7 @@ import com.citizen.api.entities.CreditCardProduct;
 import com.citizen.api.entities.Email;
 import com.citizen.api.entities.Name;
 import com.citizen.api.entities.Onboarding;
+import com.citizen.api.entities.OnboardingRequest;
 import com.citizen.api.entities.Phone;
 import com.citizen.api.entities.Product;
 import com.citizen.api.entities.ProductCat;
@@ -28,9 +29,9 @@ public class OnboardingController {
 
 	//Test Controller Method
 	@RequestMapping(value = "/getonboarding", method = RequestMethod.GET)
-	public Onboarding getOnboarding() {
+	public OnboardingRequest getOnboarding() {
 
-		Onboarding onboardingResponse = new Onboarding();
+		OnboardingRequest onboardingResponse = new OnboardingRequest();
 
 		String productCode = "VC830";
 		String salutation = "MR";
