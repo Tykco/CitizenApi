@@ -10,7 +10,6 @@ public class ConsentDetail {
 
     private String consentType;
     private String isConsentGiven;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -46,14 +45,6 @@ public class ConsentDetail {
      */
     public void setIsConsentGiven(String isConsentGiven) {
         this.isConsentGiven = isConsentGiven;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

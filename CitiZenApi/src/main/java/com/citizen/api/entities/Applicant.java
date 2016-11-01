@@ -14,7 +14,6 @@ public class Applicant {
     private List<Email> email = new ArrayList<Email>();
     private List<Phone> phone = new ArrayList<Phone>();
     private List<ConsentDetail> consentDetails = new ArrayList<ConsentDetail>();
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -86,14 +85,6 @@ public class Applicant {
      */
     public void setConsentDetails(List<ConsentDetail> consentDetails) {
         this.consentDetails = consentDetails;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

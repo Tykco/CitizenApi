@@ -12,7 +12,6 @@ public class CreditCardProduct {
     private String sourceCode;
     private String organization;
     private String logo;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -84,14 +83,6 @@ public class CreditCardProduct {
      */
     public void setLogo(String logo) {
         this.logo = logo;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

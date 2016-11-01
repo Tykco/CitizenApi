@@ -9,7 +9,6 @@ import javax.annotation.Generated;
 public class Product {
 
     private CreditCardProduct creditCardProduct;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -27,14 +26,6 @@ public class Product {
      */
     public void setCreditCardProduct(CreditCardProduct creditCardProduct) {
         this.creditCardProduct = creditCardProduct;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

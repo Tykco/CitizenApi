@@ -11,7 +11,6 @@ public class Name {
     private String salutation;
     private String givenName;
     private String surname;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -65,14 +64,6 @@ public class Name {
      */
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }
