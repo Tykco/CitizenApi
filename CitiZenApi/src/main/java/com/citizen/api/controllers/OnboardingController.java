@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.citizen.api.citiapi.CitiAPI;
+import com.citizen.api.entities.Applicant;
 import com.citizen.api.entities.Catalogue;
+import com.citizen.api.entities.ConsentDetail;
 import com.citizen.api.entities.CreditCardProduct;
+import com.citizen.api.entities.Email;
+import com.citizen.api.entities.Name;
 import com.citizen.api.entities.Onboarding;
+import com.citizen.api.entities.Phone;
 import com.citizen.api.entities.Product;
 import com.citizen.api.entities.ProductCat;
 
@@ -64,7 +69,7 @@ public class OnboardingController {
 	}
 	
 	@RequestMapping(value = "/onboardcard", method = RequestMethod.POST)
-	public String onboardCreditCard(@RequestBody @Valid ProductCat product) {
+	public String onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
 		
 		String productCode = "VC830";
 		String salutation = "MR";
@@ -77,7 +82,25 @@ public class OnboardingController {
 		
 		Onboarding onboardingRequest = new Onboarding();
 		
-		//onboardingRequest.setProduct(new Product().setCreditCardProduct(new CreditCardProduct().setProductCode(productCode)));
+		Product product = new Product();
+		CreditCardProduct creditCardProduct = new CreditCardProduct();
+		
+		Applicant applicant = new Applicant();
+		Name name = new Name();
+		List<Email> email = new ArrayList<Email>();
+		Email emailObj = new Email();
+		emailObj.setEmailAddress(emailAddress);
+		email.add(emailObj);
+		List<Phone> phone = new ArrayList<Phone>();
+		Phone phoneObj = new Phone();
+		phoneObj.setPhoneType(phoneType);
+		List<ConsentDetail> consentDetails = new ArrayList<ConsentDetail>();
+		
+		creditCardProduct.setProductCode(productCode);
+		name.setSalutation(salutation);
+		name.setGivenName(givenName);
+		name.setSurname(surname);
+		
 		return "ok";
 	}
 }

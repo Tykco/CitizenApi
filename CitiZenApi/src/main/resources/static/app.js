@@ -52,7 +52,7 @@ var app = angular.module('citizen', [
 .config(function (uiGmapGoogleMapApiProvider) {
 
     uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyCaXBV3pnvGrnkQKrpOXSXboD6iuyb0_Qk',
+        key: 'AIzaSyCMfUTuwNO1AOdymd_efJzwYuYmNVKpncY',
         v: '3.20',
         libraries: 'weather,geometry,visualization'
     });

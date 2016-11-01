@@ -5,7 +5,7 @@
 
 angular.module('citizen')
 
-.controller('HomeCtrl', function ($state, $scope, $rootScope, cookieFactory) {
+.controller('HomeCtrl', function ($state, $scope, $rootScope, $http, cookieFactory) {
 
     angular.element(document).ready(function () {
 
@@ -21,11 +21,11 @@ angular.module('citizen')
         });
 
     });
-    
+
     $rootScope.$on('$stateChangeSuccess', function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
-    
+
     $scope.causeList = [
         {
             name: "Save the Elephants",
@@ -73,33 +73,46 @@ angular.module('citizen')
             avatar: "/assets/img/world_wide_fund.png"
         }
     ];
-    
-    $scope.setPageCookie = function(pageNumber) {
+
+    $scope.setPageCookie = function (pageNumber) {
         cookieFactory.setCookieData(pageNumber);
         $state.go('cause');
     };
-    
-    $scope.isUserLogin = function() {
-        
-        if(cookieFactory.getUserCookieData() == undefined) {
+
+    $scope.isUserLogin = function () {
+
+        if (cookieFactory.getUserCookieData() == false) {
             return true;
         } else {
-            return false;   
-        } 
+            return false;
+        }
     };
-    
+
     $scope.getAccessToken = function () {
-        
+
         var url = document.URL;
         var access_token = "";
 
-        if(url.indexOf("code") !== -1){
-            access_token = url.substring(url.indexOf("code")+5, url.indexOf("&state"));
+        if (url.indexOf("code") !== -1) {
+            access_token = url.substring(url.indexOf("code") + 5, url.indexOf("&state"));
+
             alert(access_token);
         }
     };
-    
+
     $scope.getAccessToken();
-    
+
+    $scope.customerName = "";
+
+    $scope.getCustomerName = function (accessToken) {
+
+        string urlGetCustomerName = "https://citizen-app.herokuapp.com/getcustomer?token=" + accessToken;
+
+        $http.get(urlGetCustomerName)
+            .success(function (customerDetails) {
+                $scope.customerName = customerDetails.name;
+            })
+
+    };
 
 });

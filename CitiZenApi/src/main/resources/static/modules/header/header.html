@@ -12,7 +12,7 @@
             <i class="mail outline icon m-l-5"></i>
         </a>
         <a href="#" class="ui dropdown item">
-            <div ng-if="isUserLogin()">Level 1&nbsp; : &nbsp; Leon </div>
+            <div ng-if="isUserLogin()">Level 1&nbsp; : &nbsp; {{customerName}} </div>
             <img ng-if="isUserLogin()" class="ui avatar image m-l-10" src="/assets/img/user_icon.png">
             <div ng-if="!isUserLogin()">Login Here</div>
             <img ng-if="!isUserLogin()" class="ui avatar image m-l-10" src="/assets/img/empty_icon.png">
