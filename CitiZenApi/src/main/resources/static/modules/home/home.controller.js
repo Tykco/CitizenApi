@@ -110,6 +110,8 @@ angular.module('citizen')
 
         $http.get(urlGetCustomerName)
             .success(function (customerDetails) {
+                alert(customerDetails.name);
+                cookieFactory.setUserCookieData(customerDetails.name);
                 $scope.customerName = customerDetails.name;
             })
 
