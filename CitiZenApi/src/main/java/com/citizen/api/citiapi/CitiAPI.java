@@ -22,7 +22,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import com.citizen.api.entities.Catalogue;
-import com.citizen.api.entities.ProductCat;
+import com.citizen.api.entities.OnboardingRequest;
+import com.citizen.api.entities.ScreeningRequest;
+import com.citizen.api.entities.SuccessfulOnboard;
+import com.citizen.api.entities.SuccessfulScreening;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -461,28 +464,28 @@ public class CitiAPI {
 		}
 	}
 	//Customer ends here
-	
+
 	//Onboarding
 	//Product Catalogue
 	public Catalogue getProductCatalogue(){
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		CloseableHttpClient httpClient = null;
 
 		CloseableHttpResponse response = null;
-		
+
 		Catalogue catalogue = new Catalogue();
 
 		try {
 			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
 
 			HttpGet request = new HttpGet("https://sandbox.apihub.citi.com/gcb/api/v1/apac/onboarding/products");
-			
+
 			request.addHeader("Authorization", this.tokenType + " " + this.accessToken);
 			request.addHeader("uuid", generateUUID());
 			request.addHeader("Accept", "application/json");
 			request.addHeader("client_id", appClientId);
-			
+
 			System.out.println("Executing request " + request.getRequestLine());
 
 			response = httpClient.execute(request);
@@ -498,12 +501,114 @@ public class CitiAPI {
 		}
 		return catalogue;
 	}
-	
-	public String postOnboarding() {
-		
-		return "error";
-	}
 
+	//TODO
+	public SuccessfulOnboard postOnboarding(OnboardingRequest obRequest) {
+
+		SuccessfulOnboard successfulOnboard = new SuccessfulOnboard();
+		ObjectMapper mapper = new ObjectMapper();
+		CloseableHttpClient httpClient = null;
+
+		CloseableHttpResponse response = null;
+
+
+		try{
+
+			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
+			//proxy configuration 
+			//HttpHost proxy = new HttpHost("proxy.xxxx.com", 8080, "http");
+			//RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+
+			HttpPost request = new HttpPost("https://sandbox.apihub.citi.com/gcb/api/v1/apac/onboarding/products/unsecured/applications");
+
+			//proxy configuration
+			//request.setConfig(config);
+			// Header parameters  addition
+			request.addHeader("Authorization", this.tokenType + " " + this.accessToken);
+			request.addHeader("uuid", generateUUID());
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("client_id", appClientId);
+
+			String jsonInString = mapper.writeValueAsString(obRequest);
+
+			StringEntity requestBody =new StringEntity(jsonInString);
+
+			try {
+				((HttpPost) request).setEntity(requestBody);
+			} catch (Exception e) {
+				e.printStackTrace(); 
+			}
+
+			System.out.println("Executing request " + request.getRequestLine());
+
+			response = httpClient.execute(request);
+
+			System.out.println("----------------------------------------");
+			System.out.println(response.getStatusLine());
+			String result = EntityUtils.toString(response.getEntity());
+			System.out.println(result);
+			successfulOnboard = mapper.readValue(result, new TypeReference<SuccessfulOnboard>(){});
+			response.close();
+			return successfulOnboard;
+		} catch (Exception e) {
+		}
+		return successfulOnboard;
+	}
+	
+	public SuccessfulScreening postScreening(ScreeningRequest screeningRequest, String applicationId) {
+		
+		SuccessfulScreening successfulScreening = new SuccessfulScreening();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		CloseableHttpClient httpClient = null;
+
+		CloseableHttpResponse response = null;
+
+
+		try{
+
+			httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
+			//proxy configuration 
+			//HttpHost proxy = new HttpHost("proxy.xxxx.com", 8080, "http");
+			//RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+
+			HttpPost request = new HttpPost("https://sandbox.apihub.citi.com/gcb/api/v1/apac/onboarding/products/unsecured/applications/" + applicationId + "/backgroundScreening");
+
+			//proxy configuration
+			//request.setConfig(config);
+			// Header parameters  addition
+			request.addHeader("Authorization", this.tokenType + " " + this.accessToken);
+			request.addHeader("uuid", generateUUID());
+			request.addHeader("Accept", "application/json");
+			request.addHeader("Content-Type", "application/json");
+			request.addHeader("client_id", appClientId);
+
+			String jsonInString = mapper.writeValueAsString(screeningRequest);
+
+			StringEntity requestBody =new StringEntity(jsonInString);
+
+			try {
+				((HttpPost) request).setEntity(requestBody);
+			} catch (Exception e) {
+				e.printStackTrace(); 
+			}
+
+			System.out.println("Executing request " + request.getRequestLine());
+
+			response = httpClient.execute(request);
+
+			System.out.println("----------------------------------------");
+			System.out.println(response.getStatusLine());
+			String result = EntityUtils.toString(response.getEntity());
+			System.out.println(result);
+			successfulScreening = mapper.readValue(result, new TypeReference<SuccessfulScreening>(){});
+			response.close();
+			return successfulScreening;
+		} catch (Exception e) {
+		}
+		return successfulScreening;
+	}
 	//===============Helper Functions===========================================
 	private String generateUUID(){
 		return UUID.randomUUID().toString();

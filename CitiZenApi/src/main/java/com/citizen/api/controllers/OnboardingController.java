@@ -17,11 +17,13 @@ import com.citizen.api.entities.ConsentDetail;
 import com.citizen.api.entities.CreditCardProduct;
 import com.citizen.api.entities.Email;
 import com.citizen.api.entities.Name;
-import com.citizen.api.entities.Onboarding;
 import com.citizen.api.entities.OnboardingRequest;
 import com.citizen.api.entities.Phone;
 import com.citizen.api.entities.Product;
 import com.citizen.api.entities.ProductCat;
+import com.citizen.api.entities.ScreeningRequest;
+import com.citizen.api.entities.SuccessfulOnboard;
+import com.citizen.api.entities.SuccessfulScreening;
 
 @RestController
 public class OnboardingController {
@@ -126,7 +128,7 @@ public class OnboardingController {
 	}
 
 	@RequestMapping(value = "/onboardcard", method = RequestMethod.POST)
-	public OnboardingRequest onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
+	public SuccessfulScreening onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
 
 		String productCode = productObject.getProductCode();
 		String sourceCode = productObject.getSourceCode();
@@ -141,6 +143,11 @@ public class OnboardingController {
 		String phoneNumber = "98778535";
 
 		OnboardingRequest onboardingRequest = new OnboardingRequest();
+		SuccessfulOnboard successfulOnboardResponse = new SuccessfulOnboard();
+		
+		ScreeningRequest screeningRequest = new ScreeningRequest(); 
+		SuccessfulScreening successfulScreening = new SuccessfulScreening(); 
+		
 		
 		Product product = new Product();
 		CreditCardProduct creditCardProduct = new CreditCardProduct();
@@ -186,6 +193,19 @@ public class OnboardingController {
 		onboardingRequest.setApplicant(applicant);
 		onboardingRequest.setProduct(product);
 
-		return onboardingRequest;
+		//Authenticate session
+		CitiAPI api = new CitiAPI();
+		api.authorize();
+		
+		//Perform onboarding application
+		successfulOnboardResponse = api.postOnboarding(onboardingRequest);
+		
+		screeningRequest.setControlFlowId(successfulOnboardResponse.getControlFlowId());
+		
+		
+		//Perform screening after unsecured onboarding application..
+		successfulScreening = api.postScreening(screeningRequest, successfulOnboardResponse.getApplicationId());
+		
+		return successfulScreening;
 	}
 }
