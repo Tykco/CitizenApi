@@ -31,40 +31,46 @@ public class OnboardingController {
 	@RequestMapping(value = "/getonboarding", method = RequestMethod.GET)
 	public OnboardingRequest getOnboarding() {
 
-		OnboardingRequest onboardingResponse = new OnboardingRequest();
-
 		String productCode = "VC830";
+		String sourceCode = "WW5ARCE1";
+		String organization = "888";
+		String logo = "830";
 		String salutation = "MR";
 		String givenName = "Leon";
 		String surname = "Lim";
 		String emailAddress = "citizen.firstprize@citi.com";
 		String phoneType = "PRIMARY_MOBILE_NUMBER";
-        String phoneCountryCode = "65";
-        String phoneNumber = "98778535";
+		String phoneCountryCode = "65";
+		String phoneNumber = "98778535";
+
+		OnboardingRequest onboardingResponse = new OnboardingRequest();
 		
-        Product product = new Product();
+		Product product = new Product();
 		CreditCardProduct creditCardProduct = new CreditCardProduct();
 		creditCardProduct.setProductCode(productCode);
+		creditCardProduct.setLogo(logo);
+		creditCardProduct.setOrganization(organization);
+		creditCardProduct.setSourceCode(sourceCode);
 		product.setCreditCardProduct(creditCardProduct);
-		
+
 		Applicant applicant = new Applicant();
 		Name name = new Name();
 		name.setSalutation(salutation);
 		name.setGivenName(givenName);
 		name.setSurname(surname);
-		
+
 		List<Email> email = new ArrayList<Email>();
 		Email emailObj = new Email();
 		emailObj.setEmailAddress(emailAddress);
 		email.add(emailObj);
-		
+
 		List<Phone> phone = new ArrayList<Phone>();
 		Phone phoneObj = new Phone();
 		phoneObj.setPhoneType(phoneType);
 		phoneObj.setPhoneCountryCode(phoneCountryCode);
 		phoneObj.setPhoneNumber(phoneNumber);
 		phone.add(phoneObj);
-		
+
 		List<ConsentDetail> consentDetails = new ArrayList<ConsentDetail>();
 		ConsentDetail consentDetailObj1 = new ConsentDetail();
 		consentDetailObj1.setConsentType("PDP_CONSENT");
@@ -74,15 +80,15 @@ public class OnboardingController {
 		consentDetailObj2.setIsConsentGiven("true");
 		consentDetails.add(consentDetailObj1);
 		consentDetails.add(consentDetailObj2);
-		
+
 		applicant.setPhone(phone);
 		applicant.setName(name);
 		applicant.setConsentDetails(consentDetails);
 		applicant.setEmail(email);
-		
+
 		onboardingResponse.setApplicant(applicant);
 		onboardingResponse.setProduct(product);
-		
+
 		return onboardingResponse;
 	}
 
@@ -118,44 +124,50 @@ public class OnboardingController {
 		catalogueResult.setProducts(prodCatList);
 		return catalogueResult;
 	}
-	
+
 	@RequestMapping(value = "/onboardcard", method = RequestMethod.POST)
 	public Onboarding onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
-		
+
 		String productCode = "VC830";
+		String sourceCode = "WW5ARCE1";
+		String organization = "888";
+		String logo = "830";
 		String salutation = "MR";
 		String givenName = "Leon";
 		String surname = "Lim";
 		String emailAddress = "citizen.firstprize@citi.com";
 		String phoneType = "PRIMARY_MOBILE_NUMBER";
-        String phoneCountryCode = "65";
-        String phoneNumber = "98778535";
-		
+		String phoneCountryCode = "65";
+		String phoneNumber = "98778535";
+
 		Onboarding onboardingRequest = new Onboarding();
 		
 		Product product = new Product();
 		CreditCardProduct creditCardProduct = new CreditCardProduct();
 		creditCardProduct.setProductCode(productCode);
+		creditCardProduct.setLogo(logo);
+		creditCardProduct.setOrganization(organization);
+		creditCardProduct.setSourceCode(sourceCode);
 		product.setCreditCardProduct(creditCardProduct);
-		
+
 		Applicant applicant = new Applicant();
 		Name name = new Name();
 		name.setSalutation(salutation);
 		name.setGivenName(givenName);
 		name.setSurname(surname);
-		
+
 		List<Email> email = new ArrayList<Email>();
 		Email emailObj = new Email();
 		emailObj.setEmailAddress(emailAddress);
 		email.add(emailObj);
-		
+
 		List<Phone> phone = new ArrayList<Phone>();
 		Phone phoneObj = new Phone();
 		phoneObj.setPhoneType(phoneType);
 		phoneObj.setPhoneCountryCode(phoneCountryCode);
 		phoneObj.setPhoneNumber(phoneNumber);
 		phone.add(phoneObj);
-		
+
 		List<ConsentDetail> consentDetails = new ArrayList<ConsentDetail>();
 		ConsentDetail consentDetailObj1 = new ConsentDetail();
 		consentDetailObj1.setConsentType("PDP_CONSENT");
@@ -165,15 +177,15 @@ public class OnboardingController {
 		consentDetailObj2.setIsConsentGiven("true");
 		consentDetails.add(consentDetailObj1);
 		consentDetails.add(consentDetailObj2);
-		
+
 		applicant.setPhone(phone);
 		applicant.setName(name);
 		applicant.setConsentDetails(consentDetails);
 		applicant.setEmail(email);
-		
+
 		onboardingRequest.setApplicant(applicant);
 		onboardingRequest.setProduct(product);
-		
+
 		return onboardingRequest;
 	}
 }
