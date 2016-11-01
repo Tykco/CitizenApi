@@ -135,6 +135,7 @@ public class OnboardingController {
 		Product product = new Product();
 		CreditCardProduct creditCardProduct = new CreditCardProduct();
 		creditCardProduct.setProductCode(productCode);
+		product.setCreditCardProduct(creditCardProduct);
 		
 		Applicant applicant = new Applicant();
 		Name name = new Name();
