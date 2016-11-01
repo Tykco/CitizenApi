@@ -32,6 +32,55 @@ public class OnboardingController {
 
 		Onboarding onboardingResponse = new Onboarding();
 
+		String productCode = "VC830";
+		String salutation = "MR";
+		String givenName = "Leon";
+		String surname = "Lim";
+		String emailAddress = "citizen.firstprize@citi.com";
+		String phoneType = "PRIMARY_MOBILE_NUMBER";
+        String phoneCountryCode = "65";
+        String phoneNumber = "98778535";
+		
+		Product product = new Product();
+		CreditCardProduct creditCardProduct = new CreditCardProduct();
+		creditCardProduct.setProductCode(productCode);
+		
+		Applicant applicant = new Applicant();
+		Name name = new Name();
+		name.setSalutation(salutation);
+		name.setGivenName(givenName);
+		name.setSurname(surname);
+		
+		List<Email> email = new ArrayList<Email>();
+		Email emailObj = new Email();
+		emailObj.setEmailAddress(emailAddress);
+		email.add(emailObj);
+		
+		List<Phone> phone = new ArrayList<Phone>();
+		Phone phoneObj = new Phone();
+		phoneObj.setPhoneType(phoneType);
+		phoneObj.setPhoneCountryCode(phoneCountryCode);
+		phoneObj.setPhoneNumber(phoneNumber);
+		phone.add(phoneObj);
+		
+		List<ConsentDetail> consentDetails = new ArrayList<ConsentDetail>();
+		ConsentDetail consentDetailObj1 = new ConsentDetail();
+		consentDetailObj1.setConsentType("PDP_CONSENT");
+		consentDetailObj1.setIsConsentGiven(true);
+		ConsentDetail consentDetailObj2 = new ConsentDetail();
+		consentDetailObj2.setConsentType("PARTNER_CONSENT");
+		consentDetailObj2.setIsConsentGiven(true);
+		consentDetails.add(consentDetailObj1);
+		consentDetails.add(consentDetailObj2);
+		
+		applicant.setPhone(phone);
+		applicant.setName(name);
+		applicant.setConsentDetails(consentDetails);
+		applicant.setEmail(email);
+		
+		onboardingResponse.setApplicant(applicant);
+		onboardingResponse.setProduct(product);
+		
 		return onboardingResponse;
 	}
 
