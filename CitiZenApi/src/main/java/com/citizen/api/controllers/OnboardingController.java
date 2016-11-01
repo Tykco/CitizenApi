@@ -69,7 +69,7 @@ public class OnboardingController {
 	}
 	
 	@RequestMapping(value = "/onboardcard", method = RequestMethod.POST)
-	public String onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
+	public Onboarding onboardCreditCard(@RequestBody @Valid ProductCat productObject) {
 		
 		String productCode = "VC830";
 		String salutation = "MR";
@@ -114,11 +114,14 @@ public class OnboardingController {
 		consentDetails.add(consentDetailObj1);
 		consentDetails.add(consentDetailObj2);
 		
-		creditCardProduct.setProductCode(productCode);
-		name.setSalutation(salutation);
-		name.setGivenName(givenName);
-		name.setSurname(surname);
+		applicant.setPhone(phone);
+		applicant.setName(name);
+		applicant.setConsentDetails(consentDetails);
+		applicant.setEmail(email);
 		
-		return "ok";
+		onboardingRequest.setApplicant(applicant);
+		onboardingRequest.setProduct(product);
+		
+		return onboardingRequest;
 	}
 }

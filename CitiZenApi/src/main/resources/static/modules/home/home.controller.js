@@ -106,7 +106,7 @@ angular.module('citizen')
 
     $scope.getCustomerName = function (accessToken) {
 
-        string urlGetCustomerName = "https://citizen-app.herokuapp.com/getcustomer?token=" + accessToken;
+        var urlGetCustomerName = "https://citizen-app.herokuapp.com/getcustomer?token=" + accessToken;
 
         $http.get(urlGetCustomerName)
             .success(function (customerDetails) {
