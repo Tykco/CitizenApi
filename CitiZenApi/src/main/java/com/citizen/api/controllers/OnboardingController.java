@@ -42,9 +42,10 @@ public class OnboardingController {
         String phoneCountryCode = "65";
         String phoneNumber = "98778535";
 		
-		Product product = new Product();
+        Product product = new Product();
 		CreditCardProduct creditCardProduct = new CreditCardProduct();
 		creditCardProduct.setProductCode(productCode);
+		product.setCreditCardProduct(creditCardProduct);
 		
 		Applicant applicant = new Applicant();
 		Name name = new Name();
