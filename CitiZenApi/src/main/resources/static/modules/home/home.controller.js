@@ -88,21 +88,6 @@ angular.module('citizen')
         }
     };
 
-    $scope.getAccessToken = function () {
-
-        var url = document.URL;
-        var access_token = "";
-
-        if (url.indexOf("code") !== -1) {
-            access_token = url.substring(url.indexOf("code") + 5, url.indexOf("&state"));
-
-            alert(access_token);
-            $scope.getCustomerName();
-        }
-    };
-
-    $scope.getAccessToken();
-
     $scope.customerName = "";
 
     $scope.getCustomerName = function (accessToken) {
@@ -117,5 +102,20 @@ angular.module('citizen')
             })
 
     };
+
+    $scope.getAccessToken = function () {
+
+        var url = document.URL;
+        var access_token = "";
+
+        if (url.indexOf("code") !== -1) {
+            access_token = url.substring(url.indexOf("code") + 5, url.indexOf("&state"));
+
+            alert(access_token);
+            $scope.getCustomerName();
+        }
+    };
+
+    $scope.getAccessToken();
 
 });
