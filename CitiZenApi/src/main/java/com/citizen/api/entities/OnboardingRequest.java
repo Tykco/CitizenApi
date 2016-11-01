@@ -10,7 +10,6 @@ public class OnboardingRequest {
 
     private Product product;
     private Applicant applicant;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -46,14 +45,6 @@ public class OnboardingRequest {
      */
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }
