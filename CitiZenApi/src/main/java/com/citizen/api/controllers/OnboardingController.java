@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.citizen.api.citiapi.CitiAPI;
 import com.citizen.api.entities.Catalogue;
+import com.citizen.api.entities.CreditCardProduct;
 import com.citizen.api.entities.Onboarding;
+import com.citizen.api.entities.Product;
 import com.citizen.api.entities.ProductCat;
 
 @RestController
@@ -64,7 +66,18 @@ public class OnboardingController {
 	@RequestMapping(value = "/onboardcard", method = RequestMethod.POST)
 	public String onboardCreditCard(@RequestBody @Valid ProductCat product) {
 		
+		String productCode = "VC830";
+		String salutation = "MR";
+		String givenName = "Leon";
+		String surname = "Lim";
+		String emailAddress = "citizen.firstprize@citi.com";
+		String phoneType = "PRIMARY_MOBILE_NUMBER";
+        String phoneCountryCode = "65";
+        String phoneNumber = "98778535";
+		
 		Onboarding onboardingRequest = new Onboarding();
+		
+		//onboardingRequest.setProduct(new Product().setCreditCardProduct(new CreditCardProduct().setProductCode(productCode)));
 		return "ok";
 	}
 }
