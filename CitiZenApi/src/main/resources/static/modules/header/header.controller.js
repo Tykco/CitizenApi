@@ -5,7 +5,7 @@
 
 angular.module('citizen')
 
-.controller('HeaderCtrl', function ($state, $scope, $rootScope, $http, cookieFactory) {
+.controller('HeaderCtrl', function ($state, $scope, $rootScope, $http, $timeout, $window, cookieFactory) {
 
     $scope.isUserLogin = function () {
 
@@ -53,6 +53,14 @@ angular.module('citizen')
     
     $scope.getUsernameCookie = function () {
         return cookieFactory.getUserCookieData();
+    };
+    
+    $scope.logout = function () {
+        
+        cookieFactory.clearUserCookieData();
+        $timeout(function(){ 
+            $window.location.reload();
+        }, 1000);
     };
 
 });

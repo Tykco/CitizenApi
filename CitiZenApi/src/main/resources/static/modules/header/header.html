@@ -19,7 +19,7 @@
             <div ng-if="isUserLogin()">Level 1&nbsp; : &nbsp; {{getUsernameCookie()}} </div>
             <img ng-if="isUserLogin()" class="ui avatar image m-l-10" src="/assets/img/user_icon.png">
             <div class="menu profile-dropdown">
-                <div ng-if="isUserLogin()" class="item">Log Out</div>
+                <div ng-if="isUserLogin()" ng-click="logout()" class="item">Log Out</div>
             </div>
         </a>
         
