@@ -106,7 +106,7 @@
                                         <div class="map-placeholder m-l-5 m-b-20">
                                             <div id="map-canvas"></div>
                                         </div>
-                                    
+
                                         <div>
                                             <button class="ui blue fluid button m-l-5 m-b-20" onclick="calcRoute();"><i class="map icon"></i>Direct me to event</button>
                                         </div>
@@ -153,7 +153,7 @@
                             <span class="m-l-5">Points Donated</span>
                         </div>-->
                         <div class="extra content m-b-5">
-                            <a class="ui teal fluid button" ui-sref="confirmation">
+                            <a class="ui teal fluid button" ng-click="pledgePoints('Donated')">
                                 <i class="gift icon m-r-5"></i> Donate
                             </a>
                         </div>
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <div class="extra content m-b-5">
-                            <a class="ui teal fluid button" ui-sref="confirmation">
+                            <a class="ui teal fluid button" ng-click="pledgePoints('Pledged')">
                                 <i class="checkmark icon m-r-5"></i> Pledge
                             </a>
                         </div>
@@ -222,8 +222,57 @@
 
     $('.pledgepoints').popup({
         title: 'What is Pledge Points?',
-        content: 'For every transaction, the pledge percentage of Citipoints will be donated to the cause of your choice',
+        content: 'Everyone starts with 100% pledge percentage. Pledge a percentage of points, eg:10% to a cause of your choice. For every subsequent transaction, 10% of the earned Citipoints will be donated to the cause of your choice',
         position: 'left center',
         variation: 'inverted'
     });
+</script>
+
+<script>
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var map;
+
+    function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var nus = new google.maps.LatLng(1.335187, 103.965079);
+        var mapOptions = {
+            zoom: 10,
+            center: nus
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        directionsDisplay.setMap(map);
+    }
+
+    function calcRoute() {
+
+        // Try HTML5 geolocation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = new google.maps.LatLng(position.coords.latitude,
+                    position.coords.longitude);
+
+                var start = pos;
+                var end = "140021";
+                var request = {
+                    origin: start,
+                    destination: end,
+                    travelMode: google.maps.TravelMode.DRIVING
+                };
+                directionsService.route(request, function (response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        directionsDisplay.setDirections(response);
+                    }
+                });
+            }, function () {
+                handleNoGeolocation(true);
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleNoGeolocation(false);
+        }
+
+
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 </script>

@@ -36,8 +36,8 @@
                         <form class="ui form">
                             <h2 class="ui dividing header m-t-5 m-b-30">Confirmation Page</h2>
                             <div class="ui grid m-b-5">
-                                <span class="left floated six wide column m-r-10">Points Donated</span>
-                                <span class="right aligned right floated six wide column m-r-10">100 Citi Points</span>
+                                <span class="left floated six wide column m-r-10">Points {{getDonationType()}}</span>
+                                <span class="right aligned right floated six wide column m-r-10">{{getAmount()}} <span ng-if="getDonationType() === 'Pledged'">%</span><span ng-if="getDonationType() === 'Donated'">Citi Points</span></span>
                             </div>
                                                
                             <br/>

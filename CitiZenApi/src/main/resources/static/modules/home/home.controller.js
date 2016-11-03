@@ -5,7 +5,7 @@
 
 angular.module('citizen')
 
-.controller('HomeCtrl', function ($state, $scope, $rootScope, $http, cookieFactory) {
+.controller('HomeCtrl', function ($state, $scope, $rootScope, $http, $window, $timeout, cookieFactory) {
 
     angular.element(document).ready(function () {
 
@@ -77,10 +77,19 @@ angular.module('citizen')
     $scope.setPageCookie = function (pageNumber) {
         cookieFactory.setCookieData(pageNumber);
         $state.go('cause');
+        $scope.reloadRoute();
     };
     
     $rootScope.$on('$stateChangeSuccess', function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
+    
+    $scope.reloadRoute = function() {
+        
+        $timeout(function(){ 
+            $window.location.reload();
+        }, 1000);
+        
+    };
 
 });

@@ -104,5 +104,13 @@ angular.module('citizen')
     $rootScope.$on('$stateChangeSuccess', function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
+    
+    $scope.getDonationType = function() {
+        return cookieFactory.getDonationType();
+    };
+    
+    $scope.getAmount = function() {
+        return cookieFactory.getAmount();
+    };
 
 });

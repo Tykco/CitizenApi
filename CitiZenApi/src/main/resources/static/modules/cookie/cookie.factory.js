@@ -9,6 +9,8 @@ angular.module('citizen')
         var page = "";
         var username = "";
         var accessToken = "";
+        var type = "";
+        var amt = "";
 
         return {
 
@@ -55,6 +57,36 @@ angular.module('citizen')
             clearAccessTokenCookieData: function () {
                 accessToken = "";
                 $cookies.remove("accessToken");
+            },
+            
+            setDonationType: function (type) {
+                type = type;
+                $cookies.put("type", type);
+            },
+
+            getDonationType: function () {
+                type = $cookies.get("type");
+                return type;
+            },
+
+            clearDonationType: function () {
+                type = "";
+                $cookies.remove("type");
+            },
+            
+            setAmount: function (amt) {
+                amt = amt;
+                $cookies.put("amt", amt);
+            },
+
+            getAmount: function () {
+                amt = $cookies.get("amt");
+                return amt;
+            },
+
+            clearAmount: function () {
+                amt = "";
+                $cookies.remove("amt");
             }
 
         }

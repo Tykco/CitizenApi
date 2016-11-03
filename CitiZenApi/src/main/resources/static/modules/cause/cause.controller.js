@@ -9,6 +9,8 @@ angular.module('citizen')
 
     $scope.pointsDonated;
     $scope.percentageDonated;
+    $scope.percentagePoints = "";
+    $scope.pointsDonated = "";
 
     // click secondary menu tab
     $scope.secMenu = function (element, $event) {
@@ -196,6 +198,28 @@ angular.module('citizen')
 
     $scope.getCurrentPage = function () {
         return cookieFactory.getCookieData();
+    };
+    
+    $scope.pledgePoints = function (donationType) {
+        
+        if (donationType == "Pledged") {
+            
+            if ($scope.percentagePoints !== ""){
+                cookieFactory.setAmount($scope.percentagePoints);
+                cookieFactory.setDonationType(donationType);
+                $state.go('confirmation');
+            }
+
+        } else {
+            
+            if ($scope.pointsDonated !== ""){
+                cookieFactory.setAmount($scope.pointsDonated);
+                cookieFactory.setDonationType(donationType);
+                $state.go('confirmation');
+            }
+            
+        }
+
     };
 
 });
