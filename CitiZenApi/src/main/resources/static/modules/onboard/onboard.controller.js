@@ -82,6 +82,10 @@ angular.module('citizen')
             }).error(function (error) {
                 console.log("There is an error applying for card");
             });
+        
+        
+        
+        
 
     };
 

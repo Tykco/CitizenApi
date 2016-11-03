@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="field m-t-50">
-                                <button id="pay-button" class="ui teal button pull-right" type="submit">Confirm</button>
+                                <button id="pay-button" class="ui teal button pull-right confirmationBtn" type="submit">Confirm</button>
                             </div>
                         </form>
                     </div>
@@ -65,3 +65,11 @@
     </div>
     <!-- END ui container -->
 </div>
+
+<script>
+    $('.confirmationBtn').popup({
+        title: 'We are sorry!',
+        content: 'This feature has not been implemented',
+        position: 'right center'
+    });
+</script>
