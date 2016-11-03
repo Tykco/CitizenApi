@@ -9,10 +9,13 @@ angular.module('citizen')
 
     $scope.isUserLogin = function () {
 
-        if (cookieFactory.getUserCookieData() == false) {
-            return true;
-        } else {
+        if (cookieFactory.getUserCookieData() == undefined) {
+
             return false;
+            
+        } else {
+
+            return true;
         }
     };
     
@@ -26,7 +29,6 @@ angular.module('citizen')
             .success(function (customerDetails) {
                 alert(customerDetails.name);
                 cookieFactory.setUserCookieData(customerDetails.name);
-                $scope.customerName = cookieFactory.getUserCookieData();
             })
             .error(function () {
                 $scope.customerName = cookieFactory.getUserCookieData();
@@ -48,5 +50,9 @@ angular.module('citizen')
     };
 
     $scope.getAccessToken();
+    
+    $scope.getUsernameCookie = function () {
+        return cookieFactory.getUserCookieData();
+    };
 
 });
