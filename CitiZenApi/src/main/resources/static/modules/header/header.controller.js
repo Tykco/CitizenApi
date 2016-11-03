@@ -27,7 +27,7 @@ angular.module('citizen')
 
         $http.get(urlGetCustomerName)
             .success(function (customerDetails) {
-                alert(customerDetails.name);
+                //alert(customerDetails.name);
                 cookieFactory.setUserCookieData(customerDetails.name);
             })
             .error(function () {
@@ -44,7 +44,7 @@ angular.module('citizen')
         if (url.indexOf("code") !== -1) {
             access_token = url.substring(url.indexOf("code") + 5, url.indexOf("&state"));
 
-            alert(access_token);
+            //alert(access_token);
             $scope.getCustomerName(access_token);
         }
     };
