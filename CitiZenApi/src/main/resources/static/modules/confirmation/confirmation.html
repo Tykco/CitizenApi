@@ -2,7 +2,7 @@
     <!-- wrap content into container -->
     <div class="ui container">
 
-        <div></div>
+        <div class="m-t-25 m-b-25"></div>
 
         <div class="ui segment">
             <div class="ui grid">
@@ -34,8 +34,15 @@
                     </div>
                     <div class="ten wide column">
                         <form class="ui form">
-                            <h2 class="ui dividing header m-t-5 m-b-20">Confirmation Page</h2>
-                            <div class="field">
+                            <h2 class="ui dividing header m-t-5 m-b-30">Confirmation Page</h2>
+                            <div class="ui grid m-b-5">
+                                <span class="left floated six wide column m-r-10">Points Donated</span>
+                                <span class="right aligned right floated six wide column m-r-10">100 Citi Points</span>
+                            </div>
+                                               
+                            <br/>
+                            
+                            <div class="field m-t-5">
                                 <label>Phone Number</label>
                                 <input type="text" name="card[name]" placeholder="eg: +6590335566">
                             </div>
@@ -46,7 +53,7 @@
                                     <input type="text" name="card[number]" maxlength="4" placeholder="eg: 9741">
                                 </div>
                             </div>
-                            <div class="field m-t-30">
+                            <div class="field m-t-50">
                                 <button id="pay-button" class="ui teal button pull-right" type="submit">Confirm</button>
                             </div>
                         </form>

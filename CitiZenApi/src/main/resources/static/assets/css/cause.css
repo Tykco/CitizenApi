@@ -16,6 +16,11 @@
     /*border-radius: 5px;*/
 }
 
+#map-canvas {
+    height: 197px;
+    width: auto;
+}
+
 .angular-google-map-container {
     height: 198px;
 }

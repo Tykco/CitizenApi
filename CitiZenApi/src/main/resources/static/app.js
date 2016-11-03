@@ -5,7 +5,7 @@
 
 var app = angular.module('citizen', [
     'ui.router',
-    'uiGmapgoogle-maps',
+    //'uiGmapgoogle-maps',
     'ezfb',
     'ngCookies'
 ])
@@ -41,15 +41,26 @@ var app = angular.module('citizen', [
     
     .state('reward', {
         url: '/reward',
-        controller: 'ConfirmationCtrl',
+        controller: 'RewardCtrl',
         templateUrl: 'modules/reward/reward.html'
+    })
+    
+    .state('onboard', {
+        url: '/onboard',
+        controller: 'OnboardCtrl',
+        templateUrl: 'modules/onboard/onboard.html'
+    })
+    
+    .state('landing', {
+        url: '/landing',
+        templateUrl: 'modules/landing/landing.html'
     });
 
     $urlRouterProvider.otherwise('/');
 
 })
 
-.config(function (uiGmapGoogleMapApiProvider) {
+/*.config(function (uiGmapGoogleMapApiProvider) {
 
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyCMfUTuwNO1AOdymd_efJzwYuYmNVKpncY',
@@ -57,7 +68,7 @@ var app = angular.module('citizen', [
         libraries: 'weather,geometry,visualization'
     });
 
-})
+})*/
 
 .config(function (ezfbProvider) {
 
@@ -68,4 +79,13 @@ var app = angular.module('citizen', [
     }];
     ezfbProvider.setInitFunction(_defaultInitFunction);
 
+})
+
+.config(function ($httpProvider) {
+    
+    $httpProvider.defaults.headers.common = {};
+    $httpProvider.defaults.headers.post = {};
+    $httpProvider.defaults.headers.put = {};
+    $httpProvider.defaults.headers.patch = {};
+    
 });

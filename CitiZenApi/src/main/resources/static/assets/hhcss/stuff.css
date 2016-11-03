@@ -1,0 +1,13 @@
+.section{
+	background-size: cover;
+	text-align:center;
+}
+
+#section0 {
+	background-image: url(/img/bg.jpg);
+	padding: 0 0 0 0;
+}
+
+#section1 {
+	color: white;
+}

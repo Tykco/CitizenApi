@@ -1,18 +1,21 @@
 <!-- navbar -->
-<div class="ui stackable menu fixed navbar">
+<div ng-controller="HeaderCtrl" class="ui stackable menu fixed navbar">
     <a class="header item" ui-sref="home">
-        <!-- <img src="css/images/logo.svg" class="m-r-10"> -->
+        <img src="/assets/img/citizen_icon.png">
         <span>CITI </span> ZEN
     </a>
     <div class="right menu">
-        <a ui-sref="reward" class="ui item">
-				Rewards Journey
+        <a href="http://precitizen.herokuapp.com" class="ui item">
+            <i class="info circle icon m-r-10"></i> Learn More
         </a>
-        <a href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&client_id=b42c147f-225b-493b-bec0-248cbb11f5c2&scope=pay_with_points%20customers_profiles&countryCode=SG&businessCode=GCB&locale=en_US&state=SG&redirect_uri=https://citizen-app.herokuapp.com/" class="ui item">
-            <i class="mail outline icon m-l-5"></i>
+        <a ui-sref="reward" class="ui item">
+            <i class="trophy icon m-r-10"></i> Rewards Journey
+        </a>
+        <a ui-sref="onboard" ng-if="!isUserLogin()" class="ui item">
+            <i class="payment icon m-r-10"></i> Sign Up
         </a>
         
-        <a href="#" ng-if="isUserLogin()" class="ui dropdown item">
+        <a class="ui dropdown item" href="#" ng-if="isUserLogin()">
             <div ng-if="isUserLogin()">Level 1&nbsp; : &nbsp; {{customerName}} </div>
             <img ng-if="isUserLogin()" class="ui avatar image m-l-10" src="/assets/img/user_icon.png">
             <div class="menu profile-dropdown">
@@ -20,9 +23,9 @@
             </div>
         </a>
         
-        <a href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&client_id=b42c147f-225b-493b-bec0-248cbb11f5c2&scope=pay_with_points%20customers_profiles&countryCode=SG&businessCode=GCB&locale=en_US&state=SG&redirect_uri=https://citizen-app.herokuapp.com/" ng-if="!isUserLogin()" class="ui dropdown item">
-            <div ng-if="!isUserLogin()">Login Here</div>
-            <img ng-if="!isUserLogin()" class="ui avatar image m-l-10" src="/assets/img/empty_icon.png">
+        <a class="ui dropdown item" href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&client_id=b42c147f-225b-493b-bec0-248cbb11f5c2&scope=pay_with_points%20customers_profiles&countryCode=SG&businessCode=GCB&locale=en_US&state=SG&redirect_uri=https://citizen-app.herokuapp.com/" ng-if="!isUserLogin()">
+            <div ng-if="!isUserLogin()">Login Here &nbsp;&nbsp;</div>
+            <img ng-if="!isUserLogin()" class="ui avatar image" src="/assets/img/empty_icon.png">
         </a>
     </div>
 </div>

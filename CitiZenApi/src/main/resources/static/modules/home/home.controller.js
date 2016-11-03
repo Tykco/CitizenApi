@@ -78,44 +78,9 @@ angular.module('citizen')
         cookieFactory.setCookieData(pageNumber);
         $state.go('cause');
     };
-
-    $scope.isUserLogin = function () {
-
-        if (cookieFactory.getUserCookieData() == false) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    $scope.customerName = "";
-
-    $scope.getCustomerName = function (accessToken) {
-
-        var urlGetCustomerName = "https://citizen-app.herokuapp.com/getcustomer?token=" + "AAIkX8iEFx_sLSzflFrcA_5Lm6alrvcO8TFasMmVmAkOP0b3QfktxKTlYZeqc808E1xjPHyVon59g4GdELWqu7dA7QEQMuY7efC1FZMpu6vaczh1Xwgxw9SUpJT7DAOGfKL953VyyxsCOXoTsBypwIoTLLYpCID_EP7QUPDK_MszJqY_nr3sdsFn3JHMVbobqjjr-l5uvPqGI-S2xVXFW7yVIz6eT4diNsakF0KPUGvP1nZkyISftuurTIztSNluvlc";
-
-        $http.get(urlGetCustomerName)
-            .success(function (customerDetails) {
-                alert(customerDetails);
-                cookieFactory.setUserCookieData("testing");
-                $scope.customerName = customerDetails;
-            })
-
-    };
-
-    $scope.getAccessToken = function () {
-
-        var url = document.URL;
-        var access_token = "";
-
-        if (url.indexOf("code") !== -1) {
-            access_token = url.substring(url.indexOf("code") + 5, url.indexOf("&state"));
-
-            alert(access_token);
-            $scope.getCustomerName();
-        }
-    };
-
-    $scope.getAccessToken();
+    
+    $rootScope.$on('$stateChangeSuccess', function () {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
 
 });

@@ -100,5 +100,9 @@ angular.module('citizen')
     $scope.getCurrentPage = function() {
         return cookieFactory.getCookieData();
     };
+    
+    $rootScope.$on('$stateChangeSuccess', function () {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
 
 });

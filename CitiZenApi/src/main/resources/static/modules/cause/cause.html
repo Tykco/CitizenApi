@@ -54,21 +54,21 @@
                         </div>
                         <!-- About -->
                         <div class="ui basic segment about-container m-l-5">
-                            <p>Saving the elephants is an international project started in 2009 by 2 American Vets. Since then, they have saved more than hundreds of elephants from being hunt and killed by those who seek their husks. Thank you for the support!</i>
+                            <p>{{causeList[getCurrentPage()].about}}</i>
                             </p>
                         </div>
                         <!-- END About -->
                         <!-- The Oraganization -->
                         <div class="ui basic segment organization-container hide m-l-5">
-                            <p>Animal Planet is a non-profit organization that aims to conserve the habitat of all endangered animals. It is funded by a group of humanitarian societies and a strong group of volunteers.</p>
-                            <i class="world icon"></i> <a>www.animalplanet.com</a>
+                            <p>{{causeList[getCurrentPage()].theOrganisation}}</p>
+                            <i class="world icon"></i> <a>{{causeList[getCurrentPage()].website}}</a>
                             <br/>
-                            <i class="mail outline icon"></i> <a>animal.planet@am.us</a>
+                            <i class="mail outline icon"></i> <a>{{causeList[getCurrentPage()].email}}</a>
                         </div>
                         <!-- END The Organization -->
                         <!-- Points Conversion -->
-                        <div class="ui basic segment points-container hide m-l-5">
-                            <p></p>
+                        <div class="ui basic segment points-container hide m-l-5 m-b-10">
+                            <p><i class="child icon"></i>{{causeList[getCurrentPage()].points}}</p>
                         </div>
                         <!-- END Points Conversion -->
                     </div>
@@ -91,27 +91,28 @@
                                         </div>-->
 
                                         <div>
-                                            <i class="announcement icon m-l-5 m-r-20 m-b-15"></i>Elephant Charity Run Event
+                                            <i class="announcement icon m-l-5 m-r-20 m-b-15"></i>{{causeList[getCurrentPage()].eventName}}
                                         </div>
                                         <div>
-                                            <i class="calendar icon m-l-5 m-r-20 m-b-15"></i>20 February 2017
+                                            <i class="calendar icon m-l-5 m-r-20 m-b-15"></i>{{causeList[getCurrentPage()].eventDate}}
                                         </div>
                                         <div>
-                                            <i class="wait icon m-l-5 m-r-20 m-b-15"></i>12pm - 6pm
+                                            <i class="wait icon m-l-5 m-r-20 m-b-15"></i>{{causeList[getCurrentPage()].eventTime}}
                                         </div>
                                         <div>
-                                            <i class="marker icon m-l-5 m-r-20 m-b-15"></i>Capsicum Island</i>
+                                            <i class="marker icon m-l-5 m-r-20 m-b-15"></i>{{causeList[getCurrentPage()].eventVenue}}</i>
                                         </div>
 
                                         <div class="map-placeholder m-l-5 m-b-20">
-                                            <ui-gmap-google-map center="map.center" zoom="map.zoom">
-                                                <ui-gmap-marker coords="marker.coords" idkey="marker.id">
-                                                </ui-gmap-marker>
-                                            </ui-gmap-google-map>
+                                            <div id="map-canvas"></div>
+                                        </div>
+                                    
+                                        <div>
+                                            <button class="ui blue fluid button m-l-5 m-b-20" onclick="calcRoute();"><i class="map icon"></i>Direct me to event</button>
                                         </div>
 
                                         <div class="content m-l-5 m-r-5 m-b-20">
-                                            Come join us to participate in this awesome charity event to help raise fund for the elephants. It will be a 15km run and for each km, $1 will be donated to the cause to help the elephants. So what are you waiting for? Join us in making a difference to these elephants!
+                                            {{causeList[getCurrentPage()].eventDesc}}
                                         </div>
                                     </div>
                                 </div>
