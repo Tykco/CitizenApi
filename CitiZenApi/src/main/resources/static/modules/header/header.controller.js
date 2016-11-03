@@ -43,7 +43,7 @@ angular.module('citizen')
             access_token = url.substring(url.indexOf("code") + 5, url.indexOf("&state"));
 
             alert(access_token);
-            $scope.getCustomerName();
+            $scope.getCustomerName(access_token);
         }
     };
 

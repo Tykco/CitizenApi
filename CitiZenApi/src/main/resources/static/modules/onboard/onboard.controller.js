@@ -5,7 +5,7 @@
 
 angular.module('citizen')
 
-.controller('OnboardCtrl', function ($state, $scope, $http, $rootScope, $window, cookieFactory) {
+.controller('OnboardCtrl', function ($state, $scope, $http, $rootScope, $timeout, $window, cookieFactory) {
 
     $rootScope.$on('$stateChangeSuccess', function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -83,12 +83,14 @@ angular.module('citizen')
                 console.log("There is an error applying for card");
             });
         
-        
-        
-        
-
     };
 
 
+    $scope.refreshPage = function() {
+        $timeout(function(){ 
+            $window.location.reload();
+        }, 300);
+    };
+    
 
 });

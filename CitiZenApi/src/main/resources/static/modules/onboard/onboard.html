@@ -73,12 +73,14 @@
             <i class="child icon"></i>
         </div>
         <div class="description">
-            <p>Your credit card application has been approved! <br/></br/>Our service staff will contact you shortly and deliver the card to you.</p>
+            <p>Your credit card application has been approved!
+                <br/>
+                </br/>Our service staff will contact you shortly and deliver the card to you.</p>
         </div>
     </div>
     <div class="actions">
         <div class="two fluid ui inverted buttons">
-            <div class="ui ok green basic inverted button">
+            <div ng-click="refreshPage()" class="ui ok green basic inverted button">
                 <i class="checkmark icon"></i> Got it!
             </div>
         </div>
@@ -86,10 +88,8 @@
 </div>
 
 <script>
-    
-    document.getElementById("successMsg").onclick = function() {
+    document.getElementById("successMsg").onclick = function () {
         $('.ui.basic.modal')
             .modal('show');
     };
-
 </script>
