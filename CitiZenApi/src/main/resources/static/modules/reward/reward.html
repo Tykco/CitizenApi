@@ -3,10 +3,10 @@
         
         <h2 class="ui center aligned icon header m-t-15 m-b-15"> 
             <div class="content m-b-10">
-                Citi Points Donated &nbsp;:&nbsp;&nbsp;&nbsp; 0
+                Citi Points Donated &nbsp;:&nbsp;&nbsp;&nbsp; {{getCitiPointsDonated()}}
             </div>
             <div class="content m-b-15">
-                Points Required to Level Up &nbsp;: &nbsp;&nbsp;&nbsp; 1000
+                Points Required to Level Up &nbsp;: &nbsp;&nbsp;&nbsp; {{2000 - getCitiPointsDonated()}}
             </div>
         </h2>
         

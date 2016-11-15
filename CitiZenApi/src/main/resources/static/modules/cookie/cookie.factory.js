@@ -11,6 +11,8 @@ angular.module('citizen')
         var accessToken = "";
         var type = "";
         var amt = "";
+        var totalCitiPoints = 0;
+        var citiPointsDonated = 0;
 
         return {
 
@@ -87,6 +89,44 @@ angular.module('citizen')
             clearAmount: function () {
                 amt = "";
                 $cookies.remove("amt");
+            },
+            
+            setTotalCitiPoints: function (totalCitiPoints) {
+                totalCitiPoints = totalCitiPoints;
+                $cookies.put("totalCitiPoints", totalCitiPoints);
+            },
+
+            getTotalCitiPoints: function () {
+                totalCitiPoints = $cookies.get("totalCitiPoints");
+                if (totalCitiPoints == undefined || totalCitiPoints == null) {
+                    return 0;
+                } else {
+                    return totalCitiPoints;
+                }
+            },
+
+            clearTotalCitiPoints: function () {
+                totalCitiPoints = "";
+                $cookies.remove("totalCitiPoints");
+            },
+            
+            setCitiPointsDonated: function (citiPointsDonated) {
+                citiPointsDonated = citiPointsDonated;
+                $cookies.put("citiPointsDonated", citiPointsDonated);
+            },
+
+            getCitiPointsDonated: function () {
+                citiPointsDonated = $cookies.get("citiPointsDonated");
+                if (citiPointsDonated == undefined || citiPointsDonated == null) {
+                    return 0;
+                } else {
+                    return citiPointsDonated;
+                }
+            },
+
+            clearCitiPointsDonated: function () {
+                citiPointsDonated = "";
+                $cookies.remove("citiPointsDonated");
             }
 
         }

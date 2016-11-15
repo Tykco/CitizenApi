@@ -11,7 +11,7 @@ angular.module('citizen')
         {
             name: "Level 1",
             desc: "$50 Dining Voucher at Fish & Co",
-            numberOfPointsRequired: 1000,
+            numberOfPointsRequired: 0,
             sponsor: "Fish & Co",
             image: "/assets/img/fish_and_co.JPG",
             avatar: "/assets/img/fish_and_co_logo.jpg"
@@ -57,5 +57,9 @@ angular.module('citizen')
     $rootScope.$on('$stateChangeSuccess', function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
+    
+    $scope.getCitiPointsDonated = function() {
+        return cookieFactory.getCitiPointsDonated();
+    };
 
 });

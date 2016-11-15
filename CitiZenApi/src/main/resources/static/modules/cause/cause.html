@@ -135,7 +135,7 @@
                 <div class="ui fluid card">
                     <div class="content">
                         <span class="right floated m-r-5">
-                            <b>520</b>
+                            <b>{{getTotalCitiPoints()}}</b>
                         </span>
                         <div class="header m-l-5">Citi Points Remaining</div>
                     </div>
@@ -144,7 +144,7 @@
                             <div class="fields">
                                 <div class="sixteen wide field">
                                     <label class="input-center m-l-5"><i class="help circle icon donatepoints"></i>Donate Points</label>
-                                    <input class="input-center m-b-5" type="text" ng-model="pointsDonated " placeholder="eg: 500">
+                                    <input class="input-center m-b-5" type="number" ng-model="pointsDonated" placeholder="eg: 500" ng-style= "myStyle">
                                 </div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                 <div class="ui fluid card">
                     <div class="content">
                         <span class="right floated m-r-5">
-                            <b>80 %</b>
+                            <b>100 %</b>
                         </span>
                         <div class="header m-l-5">Pledge Percentage Remaining</div>
                     </div>
@@ -172,7 +172,7 @@
                             <div class="fields">
                                 <div class="sixteen wide field">
                                     <label class="input-center m-l-5"><i class="help circle icon pledgepoints"></i>Pledge Points</label>
-                                    <input class="input-center m-b-5" type="text" ng-model="percentagePoints" placeholder="eg: 20">
+                                    <input class="input-center m-b-5" type="number" ng-model="percentagePoints" placeholder="eg: 20" ng-style="pledgePointsError">
                                 </div>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="content">
                         <div class="facebook-commentplaceholder">
-                            <div class="fb-comments facebook-comment m-r-5 m-l-5" data-href="http://127.0.0.1:50706/index.html#/cause" data-width="350" data-numposts="2"></div>
+                            <div class="fb-comments facebook-comment m-r-5 m-l-5" data-href="https://citizen-app.herokuapp.com/#/cause" data-width="350" data-numposts="2"></div>
                         </div>
                     </div>
                 </div>

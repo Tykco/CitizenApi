@@ -1,0 +1,77 @@
+<div class="content-div">
+    <div class="ui container m-t-20">
+        <div class="ui grid">
+            <div class="two wide column"></div>
+            <!-- white segment -->
+            <div class="twelve wide column">
+                <div class="ui segment">
+                    <h2 class="ui horizontal divider header m-t-20 m-b-25">
+                        Manage my Profile
+                    </h2>
+                    <div class="ui grid">
+                        <div class="two wide column"></div>
+                        <!-- form -->
+                        <div class="twelve wide column">
+
+                            <div class="ui grid m-t-10">
+                                <div class="sixteen column row">
+                                    <div class="left floated eight wide column"><b>Username:</b></div>
+                                    <div class="right floated right aligned eight wide column">Lim Junyang Leon &nbsp;&nbsp;<a>( Update )</a></div>
+                                </div>
+
+                                <div class="sixteen column row">
+                                    <div class="left floated eight wide column"><b>Password:</b></div>
+                                    <div class="right floated right aligned eight wide column">********** &nbsp;&nbsp;<a>( Update )</a></div>
+                                </div>
+
+                                <div class="sixteen column row">
+                                    <div class="left floated eight wide column"><b>Email:</b></div>
+                                    <div class="right floated right aligned eight wide column">limjunyangleon@gmail.com &nbsp;&nbsp;<a>( Update )</a></div>
+                                </div>
+
+                                <div class="sixteen column row">
+                                    <div class="left floated eight wide column"><b>Registered Mobile Number:</b></div>
+                                    <div class="right floated right aligned eight wide column">82652930 &nbsp;&nbsp;<a>( Update )</a></div>
+                                </div>
+
+                            </div>
+
+                            <div class="ui divider m-b-40 m-t-40"></div>
+
+                            <form class="ui form" name="manageCardsForm" novalidate>
+
+                                <div class="field m-b-40" ng-repeat="card in listOfCards">
+                                    <!--<button class="ui toggle right floated button" onclick="show(this)">Enrol</button>-->
+                                    <div class="inline field">
+                                        <div class="ui toggle checkbox right floated">
+                                            <input type="checkbox" ng-click="toggleEnrollment($index, card.lastFourDigits)">
+                                            <label ng-if="!card.enrolled">Enroll</label>
+                                            <label ng-if="card.enrolled">Disenroll</label>
+                                        </div>
+                                    </div>
+                                    <label>{{$index + 1}}. &nbsp;&nbsp;&nbsp;(16 Digit Card Number: **** **** **** {{card.lastFourDigits}})</label>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!-- END form -->
+                        <div class="two wide column"></div>
+                    </div>
+                </div>
+                <div class="two wide column"></div>
+            </div>
+            <!-- END white segment -->
+        </div>
+        <!-- END ui grid -->
+    </div>
+    <!-- END ui container -->
+</div>
+<!-- END content -->
+
+<style>
+    .ui.toggle.checkbox[class*="right floated"] {
+        float: right !important;
+        margin-right: 0em !important;
+        margin-left: 1em !important;
+    }
+</style>

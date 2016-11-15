@@ -6,13 +6,25 @@
 angular.module('citizen')
 
 .controller('CauseCtrl', function ($state, $scope, $rootScope, $window, cookieFactory) {
-
+    
+    
     $scope.pointsDonated;
     $scope.percentageDonated;
     $scope.percentagePoints = "";
     $scope.pointsDonated = "";
 
-    // click secondary menu tab
+    
+    $rootScope.$on('$stateChangeSuccess', function () {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
+    
+    
+    /**
+     * @name: secMenu
+     * @type: method
+     * @description: toggle between menu
+     */
+    
     $scope.secMenu = function (element, $event) {
 
         $(".secondary.menu").children(".item").removeClass("active");
@@ -36,9 +48,12 @@ angular.module('citizen')
 
     }
 
-    $rootScope.$on('$stateChangeSuccess', function () {
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
-    });
+
+    /**
+     * @name: map
+     * @type: variable
+     * @description: google map coordinates
+     */
 
     $scope.map = {
         center: {
@@ -55,6 +70,13 @@ angular.module('citizen')
             longitude: 103.766082
         }
     };
+    
+    
+    /**
+     * @name: causeList
+     * @type: variable
+     * @description: list of causes
+     */
 
     $scope.causeList = [
         {
@@ -196,30 +218,65 @@ angular.module('citizen')
         }
     ];
 
+    
+    /**
+     * @name: getCurrentPage
+     * @type: method
+     * @description: find out which cause is being clicked/viewed
+     */
+    
     $scope.getCurrentPage = function () {
         return cookieFactory.getCookieData();
     };
+    
+    
+    /**
+     * @name: pledgePoints
+     * @type: method
+     * @description: donate/pledge points to cause
+     */
     
     $scope.pledgePoints = function (donationType) {
         
         if (donationType == "Pledged") {
             
-            if ($scope.percentagePoints !== ""){
+            if ($scope.percentagePoints !== "" && $scope.percentagePoints !== null){
                 cookieFactory.setAmount($scope.percentagePoints);
                 cookieFactory.setDonationType(donationType);
                 $state.go('confirmation');
+            } else {
+                $scope.pledgePointsError = {'border': '1px solid #ff0000'};
             }
-
+            
         } else {
             
-            if ($scope.pointsDonated !== ""){
+            if ($scope.pointsDonated !== "" && $scope.pointsDonated !== null){
                 cookieFactory.setAmount($scope.pointsDonated);
                 cookieFactory.setDonationType(donationType);
                 $state.go('confirmation');
+            } else {
+                $scope.myStyle= {'border': '1px solid #ff0000'};               
             }
-            
+               
         }
 
     };
-
+    
+    
+    /**
+     * @name: getTotalCitiPoints
+     * @type: method
+     * @description: find out the total citi points of the user
+     */
+    
+    $scope.getTotalCitiPoints = function () {
+        var totalCitiPoints = cookieFactory.getTotalCitiPoints();
+        
+        if (totalCitiPoints == undefined || totalCitiPoints == null) {
+            return 0;   
+        } else {
+            return totalCitiPoints;   
+        }
+    };
+    
 });

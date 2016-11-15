@@ -7,7 +7,8 @@ var app = angular.module('citizen', [
     'ui.router',
     //'uiGmapgoogle-maps',
     'ezfb',
-    'ngCookies'
+    'ngCookies',
+    'ngNotify'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -54,6 +55,12 @@ var app = angular.module('citizen', [
     .state('landing', {
         url: '/landing',
         templateUrl: 'modules/landing/landing.html'
+    })
+    
+    .state('profile', {
+        url: '/profile',
+        controller: 'ProfileCtrl',
+        templateUrl: 'modules/profile/profile.html'
     });
 
     $urlRouterProvider.otherwise('/');

@@ -77,7 +77,7 @@ angular.module('citizen')
     $scope.setPageCookie = function (pageNumber) {
         cookieFactory.setCookieData(pageNumber);
         $state.go('cause');
-        $scope.reloadRoute();
+        //$scope.reloadRoute();
     };
     
     $rootScope.$on('$stateChangeSuccess', function () {

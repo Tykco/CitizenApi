@@ -7,6 +7,16 @@ angular.module('citizen')
 
 .controller('HeaderCtrl', function ($state, $scope, $rootScope, $http, $timeout, $window, cookieFactory) {
 
+    
+    $scope.customerName = "";
+    
+    
+    /**
+     * @name: isUserLogin
+     * @type: method
+     * @description: checks if the user is login
+     */
+    
     $scope.isUserLogin = function () {
 
         if (cookieFactory.getUserCookieData() == undefined) {
@@ -19,8 +29,13 @@ angular.module('citizen')
         }
     };
     
-    $scope.customerName = "";
-
+    
+    /**
+     * @name: getCustomerName
+     * @type: method
+     * @description: get user's name
+     */
+    
     $scope.getCustomerName = function (accessToken) {
 
         var urlGetCustomerName = "https://citizen-app.herokuapp.com/getcustomer?token=" + accessToken;
@@ -29,12 +44,20 @@ angular.module('citizen')
             .success(function (customerDetails) {
                 //alert(customerDetails.name);
                 cookieFactory.setUserCookieData(customerDetails.name);
+                cookieFactory.setTotalCitiPoints(0);
             })
             .error(function () {
                 $scope.customerName = cookieFactory.getUserCookieData();
             });
             
     };
+    
+    
+    /**
+     * @name: getAccessToken
+     * @type: method
+     * @description: get access token
+     */
 
     $scope.getAccessToken = function () {
 
@@ -43,24 +66,45 @@ angular.module('citizen')
 
         if (url.indexOf("code") !== -1) {
             access_token = url.substring(url.indexOf("code") + 5, url.indexOf("&state"));
-
+            cookieFactory.setAccessTokenCookieData(access_token);
             //alert(access_token);
+            
             $scope.getCustomerName(access_token);
         }
     };
 
     $scope.getAccessToken();
     
+    
+    /**
+     * @name: getUsernameCookie
+     * @type: method
+     * @description: get user's username
+     */
+    
     $scope.getUsernameCookie = function () {
         return cookieFactory.getUserCookieData();
     };
     
+    
+    /**
+     * @name: logout
+     * @type: method
+     * @description: log the user out, clearing his username cookie
+     */
+    
     $scope.logout = function () {
         
         cookieFactory.clearUserCookieData();
-        $timeout(function(){ 
+        cookieFactory.clearAmount();
+        cookieFactory.clearAccessTokenCookieData();
+        cookieFactory.clearCookieData();
+        cookieFactory.clearDonationType();
+        cookieFactory.clearTotalCitiPoints();
+        cookieFactory.clearCitiPointsDonated();
+        /*$timeout(function(){ 
             $window.location.reload();
-        }, 1000);
+        }, 1000);*/
     };
 
 });

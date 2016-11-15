@@ -35,14 +35,21 @@
                     <div class="ten wide column">
                         <form class="ui form">
                             <h2 class="ui dividing header m-t-5 m-b-30">Confirmation Page</h2>
-                            <div class="ui grid m-b-5">
-                                <span class="left floated six wide column m-r-10">Points {{getDonationType()}}</span>
-                                <span class="right aligned right floated six wide column m-r-10">{{getAmount()}} <span ng-if="getDonationType() === 'Pledged'">%</span><span ng-if="getDonationType() === 'Donated'">Citi Points</span></span>
+                            <div class="ui grid m-b-10">
+                                <span class="left floated six wide column m-t-30 m-r-10"><b>Points {{getDonationType()}}:</b></span>
+                                <span class="right aligned right floated six wide column m-t-30 m-r-10">{{getAmount()}} <span ng-if="getDonationType() === 'Pledged'">%</span><span ng-if="getDonationType() === 'Donated'">Citi Points</span></span>
+                                
+                                <span class="left floated six wide column m-t-20 m-r-10"><b>Primary Mobile Number:</b></span>
+                                <span class="right aligned right floated six wide column m-t-20 m-r-10">82652930</span>
+                                
+                                
                             </div>
-                                               
+
                             <br/>
                             
-                            <div class="field m-t-5">
+                            
+
+                            <!--<div class="field m-t-5">
                                 <label>Phone Number</label>
                                 <input type="text" name="card[name]" placeholder="eg: +6590335566">
                             </div>
@@ -52,9 +59,9 @@
                                     <label>Card Number (Last 4 digits)</label>
                                     <input type="text" name="card[number]" maxlength="4" placeholder="eg: 9741">
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="field m-t-50">
-                                <button id="pay-button" class="ui teal button pull-right confirmationBtn" type="submit">Confirm</button>
+                                <button id="pay-button" class="ui teal button pull-right" type="submit" ng-click="sendOtp()">Confirm</button>
                             </div>
                         </form>
                     </div>
@@ -66,10 +73,29 @@
     <!-- END ui container -->
 </div>
 
-<script>
-    $('.confirmationBtn').popup({
-        title: 'We are sorry!',
-        content: 'This feature has not been implemented',
-        position: 'right center'
-    });
-</script>
+<div class="ui modal form">
+    <i class="close icon"></i>
+    <div class="header">
+        One-Time-Password Confirmation
+    </div>
+    <div class="image content">
+        <div class="ui medium image">
+            <img src="/assets/img/almost_done.png">
+        </div>
+        <div class="description">
+            <div class="ui header m-t-10">An SMS has been sent to your registered primary phone number.</div>
+            <div>
+                <input class="input-center m-b-5" type="number" ng-model="otpNumber" placeholder="Enter your 6 digit OTP">
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Cancel
+        </div>
+        <button class="ui teal right labeled icon button" ng-click="confirmOtp(otpNumber)">
+            Confirm
+            <i class="checkmark icon"></i>
+        </button>
+    </div>
+</div>
